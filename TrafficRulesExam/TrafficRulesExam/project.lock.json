@@ -3,7 +3,7 @@
   "version": 1,
   "targets": {
     "UAP,Version=v10.0": {
-      "Microsoft.ApplicationInsights/1.0.0": {
+      "Microsoft.ApplicationInsights/1.2.3": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
         },
@@ -11,9 +11,9 @@
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
         }
       },
-      "Microsoft.ApplicationInsights.PersistenceChannel/1.0.0": {
+      "Microsoft.ApplicationInsights.PersistenceChannel/1.2.3": {
         "dependencies": {
-          "Microsoft.ApplicationInsights": "[1.0.0, )"
+          "Microsoft.ApplicationInsights": "[1.2.3, )"
         },
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
@@ -22,10 +22,10 @@
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
         }
       },
-      "Microsoft.ApplicationInsights.WindowsApps/1.0.0": {
+      "Microsoft.ApplicationInsights.WindowsApps/1.1.1": {
         "dependencies": {
-          "Microsoft.ApplicationInsights": "[1.0.0, )",
-          "Microsoft.ApplicationInsights.PersistenceChannel": "[1.0.0, )"
+          "Microsoft.ApplicationInsights": "[1.2.3, 1.2.3]",
+          "Microsoft.ApplicationInsights.PersistenceChannel": "[1.2.3, 1.2.3]"
         },
         "compile": {
           "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
@@ -230,6 +230,96 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Rx-Core/2.2.5": {
+        "dependencies": {
+          "Rx-Interfaces": "[2.2.5, )"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.Core.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Core.dll": {}
+        }
+      },
+      "Rx-Interfaces/2.2.5": {
+        "compile": {
+          "lib/windows8/System.Reactive.Interfaces.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Interfaces.dll": {}
+        }
+      },
+      "Rx-Linq/2.2.5": {
+        "dependencies": {
+          "Rx-Core": "[2.2.5, )",
+          "Rx-Interfaces": "[2.2.5, )"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.Linq.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Linq.dll": {}
+        }
+      },
+      "Rx-Main/2.2.5": {
+        "dependencies": {
+          "Rx-Core": "[2.2.5, )",
+          "Rx-Interfaces": "[2.2.5, )",
+          "Rx-Linq": "[2.2.5, )",
+          "Rx-PlatformServices": "[2.2.5, )"
+        }
+      },
+      "Rx-PlatformServices/2.2.5": {
+        "dependencies": {
+          "Rx-Core": "[2.2.5, )",
+          "Rx-Interfaces": "[2.2.5, )"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.PlatformServices.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.PlatformServices.dll": {}
+        }
+      },
+      "SQLitePCL.pretty/1.0.0": {
+        "dependencies": {
+          "SQLitePCL.raw": "[0.8.2, )"
+        },
+        "compile": {
+          "lib/portable-net45+netcore45+wpa81+wp8/SQLitePCL.pretty.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+netcore45+wpa81+wp8/SQLitePCL.pretty.dll": {}
+        }
+      },
+      "SQLitePCL.pretty.Async/1.0.0": {
+        "dependencies": {
+          "Rx-Main": "[2.2.5, )",
+          "SQLitePCL.pretty": "[1.0.0, )"
+        },
+        "compile": {
+          "lib/portable-net45+netcore45+wpa81+wp8/SQLitePCL.pretty.Async.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+netcore45+wpa81+wp8/SQLitePCL.pretty.Async.dll": {}
+        }
+      },
+      "SQLitePCL.raw/0.8.6": {
+        "dependencies": {
+          "System.Collections": "[4.0.10, )",
+          "System.Collections.Concurrent": "[4.0.10, )",
+          "System.Resources.ResourceManager": "[4.0.0, )",
+          "System.Runtime": "[4.0.20, )",
+          "System.Runtime.InteropServices": "[4.0.20, )",
+          "System.Text.Encoding": "[4.0.10, )"
+        },
+        "compile": {
+          "lib/uap10.0/SQLitePCL.raw.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SQLitePCL.raw.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -1569,7 +1659,7 @@
       }
     },
     "UAP,Version=v10.0/win10-arm": {
-      "Microsoft.ApplicationInsights/1.0.0": {
+      "Microsoft.ApplicationInsights/1.2.3": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
         },
@@ -1577,9 +1667,9 @@
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
         }
       },
-      "Microsoft.ApplicationInsights.PersistenceChannel/1.0.0": {
+      "Microsoft.ApplicationInsights.PersistenceChannel/1.2.3": {
         "dependencies": {
-          "Microsoft.ApplicationInsights": "[1.0.0, )"
+          "Microsoft.ApplicationInsights": "[1.2.3, )"
         },
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
@@ -1588,10 +1678,10 @@
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
         }
       },
-      "Microsoft.ApplicationInsights.WindowsApps/1.0.0": {
+      "Microsoft.ApplicationInsights.WindowsApps/1.1.1": {
         "dependencies": {
-          "Microsoft.ApplicationInsights": "[1.0.0, )",
-          "Microsoft.ApplicationInsights.PersistenceChannel": "[1.0.0, )"
+          "Microsoft.ApplicationInsights": "[1.2.3, 1.2.3]",
+          "Microsoft.ApplicationInsights.PersistenceChannel": "[1.2.3, 1.2.3]"
         },
         "compile": {
           "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
@@ -1839,6 +1929,96 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Rx-Core/2.2.5": {
+        "dependencies": {
+          "Rx-Interfaces": "[2.2.5, )"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.Core.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Core.dll": {}
+        }
+      },
+      "Rx-Interfaces/2.2.5": {
+        "compile": {
+          "lib/windows8/System.Reactive.Interfaces.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Interfaces.dll": {}
+        }
+      },
+      "Rx-Linq/2.2.5": {
+        "dependencies": {
+          "Rx-Core": "[2.2.5, )",
+          "Rx-Interfaces": "[2.2.5, )"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.Linq.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Linq.dll": {}
+        }
+      },
+      "Rx-Main/2.2.5": {
+        "dependencies": {
+          "Rx-Core": "[2.2.5, )",
+          "Rx-Interfaces": "[2.2.5, )",
+          "Rx-Linq": "[2.2.5, )",
+          "Rx-PlatformServices": "[2.2.5, )"
+        }
+      },
+      "Rx-PlatformServices/2.2.5": {
+        "dependencies": {
+          "Rx-Core": "[2.2.5, )",
+          "Rx-Interfaces": "[2.2.5, )"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.PlatformServices.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.PlatformServices.dll": {}
+        }
+      },
+      "SQLitePCL.pretty/1.0.0": {
+        "dependencies": {
+          "SQLitePCL.raw": "[0.8.2, )"
+        },
+        "compile": {
+          "lib/portable-net45+netcore45+wpa81+wp8/SQLitePCL.pretty.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+netcore45+wpa81+wp8/SQLitePCL.pretty.dll": {}
+        }
+      },
+      "SQLitePCL.pretty.Async/1.0.0": {
+        "dependencies": {
+          "Rx-Main": "[2.2.5, )",
+          "SQLitePCL.pretty": "[1.0.0, )"
+        },
+        "compile": {
+          "lib/portable-net45+netcore45+wpa81+wp8/SQLitePCL.pretty.Async.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+netcore45+wpa81+wp8/SQLitePCL.pretty.Async.dll": {}
+        }
+      },
+      "SQLitePCL.raw/0.8.6": {
+        "dependencies": {
+          "System.Collections": "[4.0.10, )",
+          "System.Collections.Concurrent": "[4.0.10, )",
+          "System.Resources.ResourceManager": "[4.0.0, )",
+          "System.Runtime": "[4.0.20, )",
+          "System.Runtime.InteropServices": "[4.0.20, )",
+          "System.Text.Encoding": "[4.0.10, )"
+        },
+        "compile": {
+          "lib/uap10.0/SQLitePCL.raw.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SQLitePCL.raw.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -3225,7 +3405,7 @@
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
-      "Microsoft.ApplicationInsights/1.0.0": {
+      "Microsoft.ApplicationInsights/1.2.3": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
         },
@@ -3233,9 +3413,9 @@
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
         }
       },
-      "Microsoft.ApplicationInsights.PersistenceChannel/1.0.0": {
+      "Microsoft.ApplicationInsights.PersistenceChannel/1.2.3": {
         "dependencies": {
-          "Microsoft.ApplicationInsights": "[1.0.0, )"
+          "Microsoft.ApplicationInsights": "[1.2.3, )"
         },
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
@@ -3244,10 +3424,10 @@
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
         }
       },
-      "Microsoft.ApplicationInsights.WindowsApps/1.0.0": {
+      "Microsoft.ApplicationInsights.WindowsApps/1.1.1": {
         "dependencies": {
-          "Microsoft.ApplicationInsights": "[1.0.0, )",
-          "Microsoft.ApplicationInsights.PersistenceChannel": "[1.0.0, )"
+          "Microsoft.ApplicationInsights": "[1.2.3, 1.2.3]",
+          "Microsoft.ApplicationInsights.PersistenceChannel": "[1.2.3, 1.2.3]"
         },
         "compile": {
           "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
@@ -3481,6 +3661,96 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Rx-Core/2.2.5": {
+        "dependencies": {
+          "Rx-Interfaces": "[2.2.5, )"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.Core.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Core.dll": {}
+        }
+      },
+      "Rx-Interfaces/2.2.5": {
+        "compile": {
+          "lib/windows8/System.Reactive.Interfaces.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Interfaces.dll": {}
+        }
+      },
+      "Rx-Linq/2.2.5": {
+        "dependencies": {
+          "Rx-Core": "[2.2.5, )",
+          "Rx-Interfaces": "[2.2.5, )"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.Linq.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Linq.dll": {}
+        }
+      },
+      "Rx-Main/2.2.5": {
+        "dependencies": {
+          "Rx-Core": "[2.2.5, )",
+          "Rx-Interfaces": "[2.2.5, )",
+          "Rx-Linq": "[2.2.5, )",
+          "Rx-PlatformServices": "[2.2.5, )"
+        }
+      },
+      "Rx-PlatformServices/2.2.5": {
+        "dependencies": {
+          "Rx-Core": "[2.2.5, )",
+          "Rx-Interfaces": "[2.2.5, )"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.PlatformServices.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.PlatformServices.dll": {}
+        }
+      },
+      "SQLitePCL.pretty/1.0.0": {
+        "dependencies": {
+          "SQLitePCL.raw": "[0.8.2, )"
+        },
+        "compile": {
+          "lib/portable-net45+netcore45+wpa81+wp8/SQLitePCL.pretty.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+netcore45+wpa81+wp8/SQLitePCL.pretty.dll": {}
+        }
+      },
+      "SQLitePCL.pretty.Async/1.0.0": {
+        "dependencies": {
+          "Rx-Main": "[2.2.5, )",
+          "SQLitePCL.pretty": "[1.0.0, )"
+        },
+        "compile": {
+          "lib/portable-net45+netcore45+wpa81+wp8/SQLitePCL.pretty.Async.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+netcore45+wpa81+wp8/SQLitePCL.pretty.Async.dll": {}
+        }
+      },
+      "SQLitePCL.raw/0.8.6": {
+        "dependencies": {
+          "System.Collections": "[4.0.10, )",
+          "System.Collections.Concurrent": "[4.0.10, )",
+          "System.Resources.ResourceManager": "[4.0.0, )",
+          "System.Runtime": "[4.0.20, )",
+          "System.Runtime.InteropServices": "[4.0.20, )",
+          "System.Text.Encoding": "[4.0.10, )"
+        },
+        "compile": {
+          "lib/uap10.0/SQLitePCL.raw.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SQLitePCL.raw.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -4853,7 +5123,7 @@
       }
     },
     "UAP,Version=v10.0/win10-x64": {
-      "Microsoft.ApplicationInsights/1.0.0": {
+      "Microsoft.ApplicationInsights/1.2.3": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
         },
@@ -4861,9 +5131,9 @@
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
         }
       },
-      "Microsoft.ApplicationInsights.PersistenceChannel/1.0.0": {
+      "Microsoft.ApplicationInsights.PersistenceChannel/1.2.3": {
         "dependencies": {
-          "Microsoft.ApplicationInsights": "[1.0.0, )"
+          "Microsoft.ApplicationInsights": "[1.2.3, )"
         },
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
@@ -4872,10 +5142,10 @@
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
         }
       },
-      "Microsoft.ApplicationInsights.WindowsApps/1.0.0": {
+      "Microsoft.ApplicationInsights.WindowsApps/1.1.1": {
         "dependencies": {
-          "Microsoft.ApplicationInsights": "[1.0.0, )",
-          "Microsoft.ApplicationInsights.PersistenceChannel": "[1.0.0, )"
+          "Microsoft.ApplicationInsights": "[1.2.3, 1.2.3]",
+          "Microsoft.ApplicationInsights.PersistenceChannel": "[1.2.3, 1.2.3]"
         },
         "compile": {
           "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
@@ -5128,6 +5398,96 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Rx-Core/2.2.5": {
+        "dependencies": {
+          "Rx-Interfaces": "[2.2.5, )"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.Core.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Core.dll": {}
+        }
+      },
+      "Rx-Interfaces/2.2.5": {
+        "compile": {
+          "lib/windows8/System.Reactive.Interfaces.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Interfaces.dll": {}
+        }
+      },
+      "Rx-Linq/2.2.5": {
+        "dependencies": {
+          "Rx-Core": "[2.2.5, )",
+          "Rx-Interfaces": "[2.2.5, )"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.Linq.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Linq.dll": {}
+        }
+      },
+      "Rx-Main/2.2.5": {
+        "dependencies": {
+          "Rx-Core": "[2.2.5, )",
+          "Rx-Interfaces": "[2.2.5, )",
+          "Rx-Linq": "[2.2.5, )",
+          "Rx-PlatformServices": "[2.2.5, )"
+        }
+      },
+      "Rx-PlatformServices/2.2.5": {
+        "dependencies": {
+          "Rx-Core": "[2.2.5, )",
+          "Rx-Interfaces": "[2.2.5, )"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.PlatformServices.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.PlatformServices.dll": {}
+        }
+      },
+      "SQLitePCL.pretty/1.0.0": {
+        "dependencies": {
+          "SQLitePCL.raw": "[0.8.2, )"
+        },
+        "compile": {
+          "lib/portable-net45+netcore45+wpa81+wp8/SQLitePCL.pretty.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+netcore45+wpa81+wp8/SQLitePCL.pretty.dll": {}
+        }
+      },
+      "SQLitePCL.pretty.Async/1.0.0": {
+        "dependencies": {
+          "Rx-Main": "[2.2.5, )",
+          "SQLitePCL.pretty": "[1.0.0, )"
+        },
+        "compile": {
+          "lib/portable-net45+netcore45+wpa81+wp8/SQLitePCL.pretty.Async.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+netcore45+wpa81+wp8/SQLitePCL.pretty.Async.dll": {}
+        }
+      },
+      "SQLitePCL.raw/0.8.6": {
+        "dependencies": {
+          "System.Collections": "[4.0.10, )",
+          "System.Collections.Concurrent": "[4.0.10, )",
+          "System.Resources.ResourceManager": "[4.0.0, )",
+          "System.Runtime": "[4.0.20, )",
+          "System.Runtime.InteropServices": "[4.0.20, )",
+          "System.Text.Encoding": "[4.0.10, )"
+        },
+        "compile": {
+          "lib/uap10.0/SQLitePCL.raw.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SQLitePCL.raw.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -6514,7 +6874,7 @@
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
-      "Microsoft.ApplicationInsights/1.0.0": {
+      "Microsoft.ApplicationInsights/1.2.3": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
         },
@@ -6522,9 +6882,9 @@
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
         }
       },
-      "Microsoft.ApplicationInsights.PersistenceChannel/1.0.0": {
+      "Microsoft.ApplicationInsights.PersistenceChannel/1.2.3": {
         "dependencies": {
-          "Microsoft.ApplicationInsights": "[1.0.0, )"
+          "Microsoft.ApplicationInsights": "[1.2.3, )"
         },
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
@@ -6533,10 +6893,10 @@
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
         }
       },
-      "Microsoft.ApplicationInsights.WindowsApps/1.0.0": {
+      "Microsoft.ApplicationInsights.WindowsApps/1.1.1": {
         "dependencies": {
-          "Microsoft.ApplicationInsights": "[1.0.0, )",
-          "Microsoft.ApplicationInsights.PersistenceChannel": "[1.0.0, )"
+          "Microsoft.ApplicationInsights": "[1.2.3, 1.2.3]",
+          "Microsoft.ApplicationInsights.PersistenceChannel": "[1.2.3, 1.2.3]"
         },
         "compile": {
           "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
@@ -6770,6 +7130,96 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Rx-Core/2.2.5": {
+        "dependencies": {
+          "Rx-Interfaces": "[2.2.5, )"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.Core.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Core.dll": {}
+        }
+      },
+      "Rx-Interfaces/2.2.5": {
+        "compile": {
+          "lib/windows8/System.Reactive.Interfaces.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Interfaces.dll": {}
+        }
+      },
+      "Rx-Linq/2.2.5": {
+        "dependencies": {
+          "Rx-Core": "[2.2.5, )",
+          "Rx-Interfaces": "[2.2.5, )"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.Linq.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Linq.dll": {}
+        }
+      },
+      "Rx-Main/2.2.5": {
+        "dependencies": {
+          "Rx-Core": "[2.2.5, )",
+          "Rx-Interfaces": "[2.2.5, )",
+          "Rx-Linq": "[2.2.5, )",
+          "Rx-PlatformServices": "[2.2.5, )"
+        }
+      },
+      "Rx-PlatformServices/2.2.5": {
+        "dependencies": {
+          "Rx-Core": "[2.2.5, )",
+          "Rx-Interfaces": "[2.2.5, )"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.PlatformServices.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.PlatformServices.dll": {}
+        }
+      },
+      "SQLitePCL.pretty/1.0.0": {
+        "dependencies": {
+          "SQLitePCL.raw": "[0.8.2, )"
+        },
+        "compile": {
+          "lib/portable-net45+netcore45+wpa81+wp8/SQLitePCL.pretty.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+netcore45+wpa81+wp8/SQLitePCL.pretty.dll": {}
+        }
+      },
+      "SQLitePCL.pretty.Async/1.0.0": {
+        "dependencies": {
+          "Rx-Main": "[2.2.5, )",
+          "SQLitePCL.pretty": "[1.0.0, )"
+        },
+        "compile": {
+          "lib/portable-net45+netcore45+wpa81+wp8/SQLitePCL.pretty.Async.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+netcore45+wpa81+wp8/SQLitePCL.pretty.Async.dll": {}
+        }
+      },
+      "SQLitePCL.raw/0.8.6": {
+        "dependencies": {
+          "System.Collections": "[4.0.10, )",
+          "System.Collections.Concurrent": "[4.0.10, )",
+          "System.Resources.ResourceManager": "[4.0.0, )",
+          "System.Runtime": "[4.0.20, )",
+          "System.Runtime.InteropServices": "[4.0.20, )",
+          "System.Text.Encoding": "[4.0.10, )"
+        },
+        "compile": {
+          "lib/uap10.0/SQLitePCL.raw.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SQLitePCL.raw.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -8142,7 +8592,7 @@
       }
     },
     "UAP,Version=v10.0/win10-x86": {
-      "Microsoft.ApplicationInsights/1.0.0": {
+      "Microsoft.ApplicationInsights/1.2.3": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
         },
@@ -8150,9 +8600,9 @@
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
         }
       },
-      "Microsoft.ApplicationInsights.PersistenceChannel/1.0.0": {
+      "Microsoft.ApplicationInsights.PersistenceChannel/1.2.3": {
         "dependencies": {
-          "Microsoft.ApplicationInsights": "[1.0.0, )"
+          "Microsoft.ApplicationInsights": "[1.2.3, )"
         },
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
@@ -8161,10 +8611,10 @@
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
         }
       },
-      "Microsoft.ApplicationInsights.WindowsApps/1.0.0": {
+      "Microsoft.ApplicationInsights.WindowsApps/1.1.1": {
         "dependencies": {
-          "Microsoft.ApplicationInsights": "[1.0.0, )",
-          "Microsoft.ApplicationInsights.PersistenceChannel": "[1.0.0, )"
+          "Microsoft.ApplicationInsights": "[1.2.3, 1.2.3]",
+          "Microsoft.ApplicationInsights.PersistenceChannel": "[1.2.3, 1.2.3]"
         },
         "compile": {
           "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
@@ -8417,6 +8867,96 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Rx-Core/2.2.5": {
+        "dependencies": {
+          "Rx-Interfaces": "[2.2.5, )"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.Core.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Core.dll": {}
+        }
+      },
+      "Rx-Interfaces/2.2.5": {
+        "compile": {
+          "lib/windows8/System.Reactive.Interfaces.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Interfaces.dll": {}
+        }
+      },
+      "Rx-Linq/2.2.5": {
+        "dependencies": {
+          "Rx-Core": "[2.2.5, )",
+          "Rx-Interfaces": "[2.2.5, )"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.Linq.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Linq.dll": {}
+        }
+      },
+      "Rx-Main/2.2.5": {
+        "dependencies": {
+          "Rx-Core": "[2.2.5, )",
+          "Rx-Interfaces": "[2.2.5, )",
+          "Rx-Linq": "[2.2.5, )",
+          "Rx-PlatformServices": "[2.2.5, )"
+        }
+      },
+      "Rx-PlatformServices/2.2.5": {
+        "dependencies": {
+          "Rx-Core": "[2.2.5, )",
+          "Rx-Interfaces": "[2.2.5, )"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.PlatformServices.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.PlatformServices.dll": {}
+        }
+      },
+      "SQLitePCL.pretty/1.0.0": {
+        "dependencies": {
+          "SQLitePCL.raw": "[0.8.2, )"
+        },
+        "compile": {
+          "lib/portable-net45+netcore45+wpa81+wp8/SQLitePCL.pretty.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+netcore45+wpa81+wp8/SQLitePCL.pretty.dll": {}
+        }
+      },
+      "SQLitePCL.pretty.Async/1.0.0": {
+        "dependencies": {
+          "Rx-Main": "[2.2.5, )",
+          "SQLitePCL.pretty": "[1.0.0, )"
+        },
+        "compile": {
+          "lib/portable-net45+netcore45+wpa81+wp8/SQLitePCL.pretty.Async.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+netcore45+wpa81+wp8/SQLitePCL.pretty.Async.dll": {}
+        }
+      },
+      "SQLitePCL.raw/0.8.6": {
+        "dependencies": {
+          "System.Collections": "[4.0.10, )",
+          "System.Collections.Concurrent": "[4.0.10, )",
+          "System.Resources.ResourceManager": "[4.0.0, )",
+          "System.Runtime": "[4.0.20, )",
+          "System.Runtime.InteropServices": "[4.0.20, )",
+          "System.Text.Encoding": "[4.0.10, )"
+        },
+        "compile": {
+          "lib/uap10.0/SQLitePCL.raw.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SQLitePCL.raw.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -9803,7 +10343,7 @@
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
-      "Microsoft.ApplicationInsights/1.0.0": {
+      "Microsoft.ApplicationInsights/1.2.3": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
         },
@@ -9811,9 +10351,9 @@
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
         }
       },
-      "Microsoft.ApplicationInsights.PersistenceChannel/1.0.0": {
+      "Microsoft.ApplicationInsights.PersistenceChannel/1.2.3": {
         "dependencies": {
-          "Microsoft.ApplicationInsights": "[1.0.0, )"
+          "Microsoft.ApplicationInsights": "[1.2.3, )"
         },
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
@@ -9822,10 +10362,10 @@
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
         }
       },
-      "Microsoft.ApplicationInsights.WindowsApps/1.0.0": {
+      "Microsoft.ApplicationInsights.WindowsApps/1.1.1": {
         "dependencies": {
-          "Microsoft.ApplicationInsights": "[1.0.0, )",
-          "Microsoft.ApplicationInsights.PersistenceChannel": "[1.0.0, )"
+          "Microsoft.ApplicationInsights": "[1.2.3, 1.2.3]",
+          "Microsoft.ApplicationInsights.PersistenceChannel": "[1.2.3, 1.2.3]"
         },
         "compile": {
           "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
@@ -10059,6 +10599,96 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Rx-Core/2.2.5": {
+        "dependencies": {
+          "Rx-Interfaces": "[2.2.5, )"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.Core.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Core.dll": {}
+        }
+      },
+      "Rx-Interfaces/2.2.5": {
+        "compile": {
+          "lib/windows8/System.Reactive.Interfaces.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Interfaces.dll": {}
+        }
+      },
+      "Rx-Linq/2.2.5": {
+        "dependencies": {
+          "Rx-Core": "[2.2.5, )",
+          "Rx-Interfaces": "[2.2.5, )"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.Linq.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Linq.dll": {}
+        }
+      },
+      "Rx-Main/2.2.5": {
+        "dependencies": {
+          "Rx-Core": "[2.2.5, )",
+          "Rx-Interfaces": "[2.2.5, )",
+          "Rx-Linq": "[2.2.5, )",
+          "Rx-PlatformServices": "[2.2.5, )"
+        }
+      },
+      "Rx-PlatformServices/2.2.5": {
+        "dependencies": {
+          "Rx-Core": "[2.2.5, )",
+          "Rx-Interfaces": "[2.2.5, )"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.PlatformServices.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.PlatformServices.dll": {}
+        }
+      },
+      "SQLitePCL.pretty/1.0.0": {
+        "dependencies": {
+          "SQLitePCL.raw": "[0.8.2, )"
+        },
+        "compile": {
+          "lib/portable-net45+netcore45+wpa81+wp8/SQLitePCL.pretty.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+netcore45+wpa81+wp8/SQLitePCL.pretty.dll": {}
+        }
+      },
+      "SQLitePCL.pretty.Async/1.0.0": {
+        "dependencies": {
+          "Rx-Main": "[2.2.5, )",
+          "SQLitePCL.pretty": "[1.0.0, )"
+        },
+        "compile": {
+          "lib/portable-net45+netcore45+wpa81+wp8/SQLitePCL.pretty.Async.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+netcore45+wpa81+wp8/SQLitePCL.pretty.Async.dll": {}
+        }
+      },
+      "SQLitePCL.raw/0.8.6": {
+        "dependencies": {
+          "System.Collections": "[4.0.10, )",
+          "System.Collections.Concurrent": "[4.0.10, )",
+          "System.Resources.ResourceManager": "[4.0.0, )",
+          "System.Runtime": "[4.0.20, )",
+          "System.Runtime.InteropServices": "[4.0.20, )",
+          "System.Text.Encoding": "[4.0.10, )"
+        },
+        "compile": {
+          "lib/uap10.0/SQLitePCL.raw.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SQLitePCL.raw.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -11432,8 +12062,8 @@
     }
   },
   "libraries": {
-    "Microsoft.ApplicationInsights/1.0.0": {
-      "sha512": "HZ47/thX57SOuIivSvIbsR6L9CCb/Yt3IyB2i4KHmmNlf3DO+lqFwWIKDdbDNWKX+qh0Rg20/JSMPK0dwUsYYw==",
+    "Microsoft.ApplicationInsights/1.2.3": {
+      "sha512": "a34atobxpucCTTX9VCD7aIu6Ydzry+Va7TxK2tTQcfaMvefGW4kUKtg9GHKIn19IaXe+A4oZt/GBqsOt5vQrBA==",
       "type": "Package",
       "files": [
         "[Content_Types].xml",
@@ -11447,27 +12077,29 @@
         "lib/wp8/Microsoft.ApplicationInsights.dll",
         "lib/wp8/Microsoft.ApplicationInsights.XML",
         "Microsoft.ApplicationInsights.nuspec",
-        "package/services/metadata/core-properties/b9e7bc7ab2454491af07046165ff01d0.psmdcp"
+        "package/services/metadata/core-properties/3b36eef276524f5d883c618d5fd8c500.psmdcp"
       ]
     },
-    "Microsoft.ApplicationInsights.PersistenceChannel/1.0.0": {
-      "sha512": "0qQXC+CtbyF2RPuld5pF74fxsnP6ml0LUnzQ6GL9AXXY64LPsLDsPUAymoUffo7LZvPDppZboTYX59TfVxKA7A==",
+    "Microsoft.ApplicationInsights.PersistenceChannel/1.2.3": {
+      "sha512": "5MGcvPQVaGlGyAVh9adg4sSkIVSYDKn+H3+YnZa9hi1gH/g6UsRt4HLc8vp/IxjlbmXbJyAB7dYJV/NHmAGAgA==",
       "type": "Package",
       "files": [
         "[Content_Types].xml",
         "_rels/.rels",
         "lib/net40/Microsoft.ApplicationInsights.PersistenceChannel.dll",
         "lib/net40/Microsoft.ApplicationInsights.PersistenceChannel.XML",
-        "lib/portable-win8+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.XML",
+        "lib/net45/Microsoft.ApplicationInsights.PersistenceChannel.dll",
+        "lib/net45/Microsoft.ApplicationInsights.PersistenceChannel.XML",
         "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll",
+        "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.XML",
         "lib/wp8/Microsoft.ApplicationInsights.PersistenceChannel.dll",
         "lib/wp8/Microsoft.ApplicationInsights.PersistenceChannel.XML",
         "Microsoft.ApplicationInsights.PersistenceChannel.nuspec",
-        "package/services/metadata/core-properties/dc9ebba80e7343fdbd0a39a3cdeb672c.psmdcp"
+        "package/services/metadata/core-properties/f973733421c14c3594986b3f2c22213a.psmdcp"
       ]
     },
-    "Microsoft.ApplicationInsights.WindowsApps/1.0.0": {
-      "sha512": "NvBQnFeiFd0O1QdBz06UGApD7zn7ztVi7qO18IsM3EjiXRNgfrEBXB+azNm8XqLY8xGFAqh3HAuSd/wHZMe0XA==",
+    "Microsoft.ApplicationInsights.WindowsApps/1.1.1": {
+      "sha512": "Orj0UQrjQ2z0aWZZoexl734Ge7Q4oVev3VFSsk6t8l2kImrfJ1eygkJWtQ1d7u0kF6MLLrvUvsMSxo+0rgPiMQ==",
       "type": "Package",
       "files": [
         "[Content_Types].xml",
@@ -11479,7 +12111,7 @@
         "lib/wpa81/Microsoft.ApplicationInsights.Extensibility.Windows.dll",
         "lib/wpa81/Microsoft.ApplicationInsights.Extensibility.Windows.XML",
         "Microsoft.ApplicationInsights.WindowsApps.nuspec",
-        "package/services/metadata/core-properties/4f6f732debe548beaa1183418e8d65cc.psmdcp"
+        "package/services/metadata/core-properties/8265b8c93c244c80b4e8bce27f31849d.psmdcp"
       ]
     },
     "Microsoft.CSharp/4.0.0": {
@@ -12133,6 +12765,244 @@
         "ref/net46/Microsoft.Win32.Primitives.dll",
         "ref/xamarinios10/_._",
         "ref/xamarinmac20/_._"
+      ]
+    },
+    "Rx-Core/2.2.5": {
+      "sha512": "DfWVTfW6tvRkkqpnRHKxPIvaRZyDJGADuqrE6J2nwejOQbLRWi0rNUwXkViDWz++25BGDy3iRE5OE6Dv8mJxYQ==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "lib/net40/System.Reactive.Core.dll",
+        "lib/net40/System.Reactive.Core.XML",
+        "lib/net45/System.Reactive.Core.dll",
+        "lib/net45/System.Reactive.Core.XML",
+        "lib/portable-net40+sl5+win8+wp8/System.Reactive.Core.dll",
+        "lib/portable-net40+sl5+win8+wp8/System.Reactive.Core.XML",
+        "lib/portable-net45+winrt45+wp8+wpa81/System.Reactive.Core.dll",
+        "lib/portable-net45+winrt45+wp8+wpa81/System.Reactive.Core.XML",
+        "lib/portable-win81+wpa81/System.Reactive.Core.dll",
+        "lib/portable-win81+wpa81/System.Reactive.Core.XML",
+        "lib/portable-windows8+net45+wp8/System.Reactive.Core.dll",
+        "lib/portable-windows8+net45+wp8/System.Reactive.Core.XML",
+        "lib/sl5/System.Reactive.Core.dll",
+        "lib/sl5/System.Reactive.Core.XML",
+        "lib/windows8/System.Reactive.Core.dll",
+        "lib/windows8/System.Reactive.Core.XML",
+        "lib/windowsphone71/System.Reactive.Core.dll",
+        "lib/windowsphone71/System.Reactive.Core.XML",
+        "lib/windowsphone8/System.Reactive.Core.dll",
+        "lib/windowsphone8/System.Reactive.Core.XML",
+        "package/services/metadata/core-properties/acd70acf6eca4cb38c21c68005176d93.psmdcp",
+        "Rx-Core.nuspec"
+      ]
+    },
+    "Rx-Interfaces/2.2.5": {
+      "sha512": "FKtG2QfMIeUcfB7r3a89VoAiszX3DTvYETkpC6U0FzWpxRK/mcHyzYOsniDfag+NsDG0P1k1c8yNSefXKp3t2A==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "lib/net40/System.Reactive.Interfaces.dll",
+        "lib/net40/System.Reactive.Interfaces.XML",
+        "lib/net45/System.Reactive.Interfaces.dll",
+        "lib/net45/System.Reactive.Interfaces.XML",
+        "lib/portable-net40+sl5+win8+wp8/System.Reactive.Interfaces.dll",
+        "lib/portable-net40+sl5+win8+wp8/System.Reactive.Interfaces.XML",
+        "lib/portable-net45+winrt45+wp8+wpa81/System.Reactive.Interfaces.dll",
+        "lib/portable-net45+winrt45+wp8+wpa81/System.Reactive.Interfaces.XML",
+        "lib/portable-win81+wpa81/System.Reactive.Interfaces.dll",
+        "lib/portable-win81+wpa81/System.Reactive.Interfaces.XML",
+        "lib/portable-windows8+net45+wp8/System.Reactive.Interfaces.dll",
+        "lib/portable-windows8+net45+wp8/System.Reactive.Interfaces.XML",
+        "lib/sl5/System.Reactive.Interfaces.dll",
+        "lib/sl5/System.Reactive.Interfaces.XML",
+        "lib/windows8/System.Reactive.Interfaces.dll",
+        "lib/windows8/System.Reactive.Interfaces.XML",
+        "lib/windowsphone71/System.Reactive.Interfaces.dll",
+        "lib/windowsphone71/System.Reactive.Interfaces.XML",
+        "lib/windowsphone8/System.Reactive.Interfaces.dll",
+        "lib/windowsphone8/System.Reactive.Interfaces.XML",
+        "package/services/metadata/core-properties/c34c0935638f4b7ea6c51ca968fd1a88.psmdcp",
+        "Rx-Interfaces.nuspec"
+      ]
+    },
+    "Rx-Linq/2.2.5": {
+      "sha512": "UTeCIu3cWPExxmTzdiVq7SalqTBhUaomBTaAC9LpYPoAopjlFwA3hjVWXoLkGlDc/44wqJemJuEwFP00KphiFg==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "lib/net40/System.Reactive.Linq.dll",
+        "lib/net40/System.Reactive.Linq.XML",
+        "lib/net45/System.Reactive.Linq.dll",
+        "lib/net45/System.Reactive.Linq.XML",
+        "lib/portable-net40+sl5+win8+wp8/System.Reactive.Linq.dll",
+        "lib/portable-net40+sl5+win8+wp8/System.Reactive.Linq.XML",
+        "lib/portable-net45+winrt45+wp8+wpa81/System.Reactive.Linq.dll",
+        "lib/portable-net45+winrt45+wp8+wpa81/System.Reactive.Linq.XML",
+        "lib/portable-win81+wpa81/System.Reactive.Linq.dll",
+        "lib/portable-win81+wpa81/System.Reactive.Linq.XML",
+        "lib/portable-windows8+net45+wp8/System.Reactive.Linq.dll",
+        "lib/portable-windows8+net45+wp8/System.Reactive.Linq.XML",
+        "lib/sl5/System.Reactive.Linq.dll",
+        "lib/sl5/System.Reactive.Linq.XML",
+        "lib/windows8/System.Reactive.Linq.dll",
+        "lib/windows8/System.Reactive.Linq.XML",
+        "lib/windowsphone71/System.Reactive.Linq.dll",
+        "lib/windowsphone71/System.Reactive.Linq.XML",
+        "lib/windowsphone8/System.Reactive.Linq.dll",
+        "lib/windowsphone8/System.Reactive.Linq.XML",
+        "package/services/metadata/core-properties/0b05bef9a8e34a3da5e4d5d41f320ee4.psmdcp",
+        "Rx-Linq.nuspec"
+      ]
+    },
+    "Rx-Main/2.2.5": {
+      "sha512": "qdQ6qENEiLsp/LRdzZlLlodihWN8VDjwNfWa8c2ELjEHZgTdKzt1V4i61gkHVtFKZXe8Px6KupbMP3pZ+1tusQ==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "package/services/metadata/core-properties/42be7976390b4c6f82065a7d2c011282.psmdcp",
+        "Rx-Main.nuspec"
+      ]
+    },
+    "Rx-PlatformServices/2.2.5": {
+      "sha512": "pMnNEvJVjT+wuDib+W/bi5hhIYcre7dW5yxvKrJxnR4iKJ1VLA/dY2FTtjDriHGx7OeGn12lQewXlH2oHiWFPA==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "lib/net40/System.Reactive.PlatformServices.dll",
+        "lib/net40/System.Reactive.PlatformServices.XML",
+        "lib/net45/System.Reactive.PlatformServices.dll",
+        "lib/net45/System.Reactive.PlatformServices.XML",
+        "lib/portable-net40+sl5+win8+wp8/System.Reactive.PlatformServices.dll",
+        "lib/portable-net40+sl5+win8+wp8/System.Reactive.PlatformServices.XML",
+        "lib/portable-net45+winrt45+wp8+wpa81/System.Reactive.PlatformServices.dll",
+        "lib/portable-net45+winrt45+wp8+wpa81/System.Reactive.PlatformServices.XML",
+        "lib/portable-win81+wpa81/System.Reactive.PlatformServices.dll",
+        "lib/portable-win81+wpa81/System.Reactive.PlatformServices.XML",
+        "lib/portable-windows8+net45+wp8/System.Reactive.PlatformServices.dll",
+        "lib/portable-windows8+net45+wp8/System.Reactive.PlatformServices.XML",
+        "lib/sl5/System.Reactive.PlatformServices.dll",
+        "lib/sl5/System.Reactive.PlatformServices.XML",
+        "lib/windows8/System.Reactive.PlatformServices.dll",
+        "lib/windows8/System.Reactive.PlatformServices.XML",
+        "lib/windowsphone71/System.Reactive.PlatformServices.dll",
+        "lib/windowsphone71/System.Reactive.PlatformServices.XML",
+        "lib/windowsphone8/System.Reactive.PlatformServices.dll",
+        "lib/windowsphone8/System.Reactive.PlatformServices.XML",
+        "package/services/metadata/core-properties/5087526007294f7d8e78a6a4a61c494a.psmdcp",
+        "Rx-PlatformServices.nuspec"
+      ]
+    },
+    "SQLitePCL.pretty/1.0.0": {
+      "sha512": "TCeKEv3pYUajq4jhnZ6JrO1LFVDv82k8UOy1VxulAy5w6DSKZ0UEVuVnbC+xBiuKnCkzK9/xTTxwwYycfkovhw==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "lib/portable-net45+netcore45+wpa81+wp8/SQLitePCL.pretty.dll",
+        "lib/portable-net45+netcore45+wpa81+wp8/SQLitePCL.pretty.XML",
+        "package/services/metadata/core-properties/1.psmdcp",
+        "SQLitePCL.pretty.nuspec"
+      ]
+    },
+    "SQLitePCL.pretty.Async/1.0.0": {
+      "sha512": "WnpxcMZ6TMTxFuEyHlE4xiL0pFo1QbnqWEmZmc0ISJzrYwqCetDVOJoBrmOaz7ZtaobAD0hilYWte5YLbOwHzA==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "lib/portable-net45+netcore45+wpa81+wp8/SQLitePCL.pretty.Async.dll",
+        "lib/portable-net45+netcore45+wpa81+wp8/SQLitePCL.pretty.Async.XML",
+        "package/services/metadata/core-properties/1.psmdcp",
+        "SQLitePCL.pretty.Async.nuspec"
+      ]
+    },
+    "SQLitePCL.raw/0.8.6": {
+      "sha512": "KTPjkmtwoQBfNE5E44bwWdTqjnSs9hJPeqbX7dPKlmhng2YYJqbm1EpdUdB6BdFxvBzTO9WeveEMYQiNDKWqFg==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "build/MonoAndroid/pinvoke_packaged_sqlcipher/anycpu/SQLitePCL.raw.dll",
+        "build/MonoAndroid/pinvoke_packaged_sqlite3/anycpu/SQLitePCL.raw.dll",
+        "build/MonoAndroid/pinvoke_sqlite3/anycpu/SQLitePCL.raw.dll",
+        "build/MonoAndroid/SQLitePCL.raw.targets",
+        "build/native/sqlite3_dynamic/mac/libpackaged_sqlite3.dylib",
+        "build/native/sqlite3_dynamic/v110/arm/sqlite3.dll",
+        "build/native/sqlite3_dynamic/v110/x64/sqlite3.dll",
+        "build/native/sqlite3_dynamic/v110/x86/sqlite3.dll",
+        "build/native/sqlite3_dynamic/v110_wp80/arm/sqlite3.dll",
+        "build/native/sqlite3_dynamic/v110_wp80/x86/sqlite3.dll",
+        "build/native/sqlite3_dynamic/v110_xp/x64/sqlite3.dll",
+        "build/native/sqlite3_dynamic/v110_xp/x86/sqlite3.dll",
+        "build/native/sqlite3_dynamic/v120/arm/sqlite3.dll",
+        "build/native/sqlite3_dynamic/v120/x64/sqlite3.dll",
+        "build/native/sqlite3_dynamic/v120/x86/sqlite3.dll",
+        "build/native/sqlite3_dynamic/v120_wp81/arm/sqlite3.dll",
+        "build/native/sqlite3_dynamic/v120_wp81/x86/sqlite3.dll",
+        "build/native/sqlite3_dynamic/v140/arm/sqlite3.dll",
+        "build/native/sqlite3_dynamic/v140/x64/sqlite3.dll",
+        "build/native/sqlite3_dynamic/v140/x86/sqlite3.dll",
+        "build/net35/SQLitePCL.raw.targets",
+        "build/net40/SQLitePCL.raw.targets",
+        "build/net45/pinvoke_packaged_sqlite3/anycpu/SQLitePCL.raw.dll",
+        "build/net45/SQLitePCL.raw.targets",
+        "build/uap10.0/SQLitePCL.raw.targets",
+        "build/win8/SQLitePCL.raw.targets",
+        "build/win81/SQLitePCL.raw.targets",
+        "build/wp8/cppinterop_sqlite3_dynamic/arm/SQLitePCL.cppinterop.dll",
+        "build/wp8/cppinterop_sqlite3_dynamic/arm/SQLitePCL.cppinterop.winmd",
+        "build/wp8/cppinterop_sqlite3_dynamic/arm/SQLitePCL.raw.dll",
+        "build/wp8/cppinterop_sqlite3_dynamic/x86/SQLitePCL.cppinterop.dll",
+        "build/wp8/cppinterop_sqlite3_dynamic/x86/SQLitePCL.cppinterop.winmd",
+        "build/wp8/cppinterop_sqlite3_dynamic/x86/SQLitePCL.raw.dll",
+        "build/wp8/SQLitePCL.raw.targets",
+        "build/wp81/cppinterop_sqlite3_dynamic/arm/SQLitePCL.cppinterop.dll",
+        "build/wp81/cppinterop_sqlite3_dynamic/arm/SQLitePCL.cppinterop.pri",
+        "build/wp81/cppinterop_sqlite3_dynamic/arm/SQLitePCL.cppinterop.winmd",
+        "build/wp81/cppinterop_sqlite3_dynamic/arm/SQLitePCL.raw.dll",
+        "build/wp81/cppinterop_sqlite3_dynamic/x86/SQLitePCL.cppinterop.dll",
+        "build/wp81/cppinterop_sqlite3_dynamic/x86/SQLitePCL.cppinterop.pri",
+        "build/wp81/cppinterop_sqlite3_dynamic/x86/SQLitePCL.cppinterop.winmd",
+        "build/wp81/cppinterop_sqlite3_dynamic/x86/SQLitePCL.raw.dll",
+        "build/wp81/SQLitePCL.raw.targets",
+        "build/wpa81/SQLitePCL.raw.targets",
+        "build/Xamarin.iOS10/pinvoke_packaged_sqlcipher/anycpu/SQLitePCL.raw.dll",
+        "build/Xamarin.iOS10/pinvoke_packaged_sqlite3/anycpu/SQLitePCL.raw.dll",
+        "build/Xamarin.iOS10/pinvoke_sqlite3/anycpu/SQLitePCL.raw.dll",
+        "build/Xamarin.iOS10/SQLitePCL.raw.targets",
+        "build/Xamarin.Mac20/pinvoke_packaged_sqlcipher/anycpu/SQLitePCL.raw.dll",
+        "build/Xamarin.Mac20/pinvoke_packaged_sqlite3/anycpu/SQLitePCL.raw.dll",
+        "build/Xamarin.Mac20/pinvoke_sqlite3/anycpu/SQLitePCL.raw.dll",
+        "build/Xamarin.Mac20/SQLitePCL.raw.targets",
+        "lib/MonoAndroid/_._",
+        "lib/MonoTouch/SQLitePCL.raw.dll",
+        "lib/net35/SQLitePCL.raw.dll",
+        "lib/net40/SQLitePCL.raw.dll",
+        "lib/net45/SQLitePCL.raw.dll",
+        "lib/portable-net40+sl5+netcore45+wp8+MonoAndroid10+MonoTouch10+Xamarin.iOS10/SQLitePCL.raw.dll",
+        "lib/portable-net45+netcore45+wp8+MonoAndroid10+MonoTouch10+Xamarin.iOS10/SQLitePCL.raw.dll",
+        "lib/portable-net45+netcore45+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/SQLitePCL.raw.dll",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid10+MonoTouch10+Xamarin.iOS10/SQLitePCL.raw.dll",
+        "lib/portable-net45+sl5+netcore45+wp8+MonoAndroid10+MonoTouch10+Xamarin.iOS10/SQLitePCL.raw.dll",
+        "lib/uap10.0/SQLitePCL.raw.dll",
+        "lib/uap10.0/SQLitePCL.raw.pri",
+        "lib/win8/SQLitePCL.raw.dll",
+        "lib/win8/SQLitePCL.raw.pri",
+        "lib/win81/SQLitePCL.raw.dll",
+        "lib/win81/SQLitePCL.raw.pri",
+        "lib/wp8/_._",
+        "lib/wp81/_._",
+        "lib/wpa81/SQLitePCL.raw.dll",
+        "lib/wpa81/SQLitePCL.raw.pri",
+        "lib/Xamarin.iOS10/_._",
+        "lib/Xamarin.Mac20/_._",
+        "package/services/metadata/core-properties/9ccf4581e2c44eefa5c7b836c9acfb49.psmdcp",
+        "SQLitePCL.raw.nuspec"
       ]
     },
     "System.AppContext/4.0.0": {
@@ -14833,10 +15703,13 @@
   },
   "projectFileDependencyGroups": {
     "": [
-      "Microsoft.ApplicationInsights >= 1.0.0",
-      "Microsoft.ApplicationInsights.PersistenceChannel >= 1.0.0",
-      "Microsoft.ApplicationInsights.WindowsApps >= 1.0.0",
-      "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0"
+      "Microsoft.ApplicationInsights >= 1.2.3",
+      "Microsoft.ApplicationInsights.PersistenceChannel >= 1.2.3",
+      "Microsoft.ApplicationInsights.WindowsApps >= 1.1.1",
+      "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
+      "SQLitePCL.pretty >= 1.0.0",
+      "SQLitePCL.pretty.Async >= 1.0.0",
+      "SQLitePCL.raw >= 0.8.6"
     ],
     "UAP,Version=v10.0": []
   }

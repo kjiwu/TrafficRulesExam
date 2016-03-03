@@ -12,6 +12,12 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using TrafficRulesExam.Helper;
+using System.Diagnostics;
+using Windows.UI.Xaml.Media.Imaging;
+using Windows.Storage.Streams;
+using System.Threading.Tasks;
+using TrafficRulesExam.Models;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -25,6 +31,16 @@ namespace TrafficRulesExam
         public MainPage()
         {
             this.InitializeComponent();
+
+            List<QuestionItem> questions = DatabaseHelper.GetLocalQuestions();
+            listView.ItemsSource = questions;
+            qcQuestion.UpdateUI(questions[0]);
+        }
+
+        private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            QuestionItem question = listView.SelectedValue as QuestionItem;
+            qcQuestion.UpdateUI(question);
         }
     }
 }
