@@ -3,6 +3,21 @@
   "version": 1,
   "targets": {
     "UAP,Version=v10.0": {
+      "ImageLib.UWP/5.0.0": {
+        "dependencies": {
+          "Win2D.uwp": "[1.7.0, )"
+        },
+        "compile": {
+          "lib/uap10.0/ImageLib.Controls.dll": {},
+          "lib/uap10.0/ImageLib.dll": {},
+          "lib/uap10.0/ImageLib.Gif.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/ImageLib.Controls.dll": {},
+          "lib/uap10.0/ImageLib.dll": {},
+          "lib/uap10.0/ImageLib.Gif.dll": {}
+        }
+      },
       "Microsoft.ApplicationInsights/1.2.3": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
@@ -1656,9 +1671,34 @@
         "runtime": {
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "Win2D.uwp/1.7.0": {
+        "compile": {
+          "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {},
+          "lib/uap10.0/Workaround1200257.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {},
+          "lib/uap10.0/Workaround1200257.dll": {}
+        }
       }
     },
     "UAP,Version=v10.0/win10-arm": {
+      "ImageLib.UWP/5.0.0": {
+        "dependencies": {
+          "Win2D.uwp": "[1.7.0, )"
+        },
+        "compile": {
+          "lib/uap10.0/ImageLib.Controls.dll": {},
+          "lib/uap10.0/ImageLib.dll": {},
+          "lib/uap10.0/ImageLib.Gif.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/ImageLib.Controls.dll": {},
+          "lib/uap10.0/ImageLib.dll": {},
+          "lib/uap10.0/ImageLib.Gif.dll": {}
+        }
+      },
       "Microsoft.ApplicationInsights/1.2.3": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
@@ -3402,9 +3442,37 @@
         "runtime": {
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "Win2D.uwp/1.7.0": {
+        "compile": {
+          "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {},
+          "lib/uap10.0/Workaround1200257.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {},
+          "lib/uap10.0/Workaround1200257.dll": {}
+        },
+        "native": {
+          "runtimes/win10-arm/native/Microsoft.Graphics.Canvas.dll": {}
+        }
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
+      "ImageLib.UWP/5.0.0": {
+        "dependencies": {
+          "Win2D.uwp": "[1.7.0, )"
+        },
+        "compile": {
+          "lib/uap10.0/ImageLib.Controls.dll": {},
+          "lib/uap10.0/ImageLib.dll": {},
+          "lib/uap10.0/ImageLib.Gif.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/ImageLib.Controls.dll": {},
+          "lib/uap10.0/ImageLib.dll": {},
+          "lib/uap10.0/ImageLib.Gif.dll": {}
+        }
+      },
       "Microsoft.ApplicationInsights/1.2.3": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
@@ -5120,9 +5188,37 @@
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "Win2D.uwp/1.7.0": {
+        "compile": {
+          "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {},
+          "lib/uap10.0/Workaround1200257.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {},
+          "lib/uap10.0/Workaround1200257.dll": {}
+        },
+        "native": {
+          "runtimes/win10-arm/native/Microsoft.Graphics.Canvas.dll": {}
+        }
       }
     },
     "UAP,Version=v10.0/win10-x64": {
+      "ImageLib.UWP/5.0.0": {
+        "dependencies": {
+          "Win2D.uwp": "[1.7.0, )"
+        },
+        "compile": {
+          "lib/uap10.0/ImageLib.Controls.dll": {},
+          "lib/uap10.0/ImageLib.dll": {},
+          "lib/uap10.0/ImageLib.Gif.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/ImageLib.Controls.dll": {},
+          "lib/uap10.0/ImageLib.dll": {},
+          "lib/uap10.0/ImageLib.Gif.dll": {}
+        }
+      },
       "Microsoft.ApplicationInsights/1.2.3": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
@@ -6871,9 +6967,37 @@
         "runtime": {
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "Win2D.uwp/1.7.0": {
+        "compile": {
+          "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {},
+          "lib/uap10.0/Workaround1200257.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {},
+          "lib/uap10.0/Workaround1200257.dll": {}
+        },
+        "native": {
+          "runtimes/win10-x64/native/Microsoft.Graphics.Canvas.dll": {}
+        }
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
+      "ImageLib.UWP/5.0.0": {
+        "dependencies": {
+          "Win2D.uwp": "[1.7.0, )"
+        },
+        "compile": {
+          "lib/uap10.0/ImageLib.Controls.dll": {},
+          "lib/uap10.0/ImageLib.dll": {},
+          "lib/uap10.0/ImageLib.Gif.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/ImageLib.Controls.dll": {},
+          "lib/uap10.0/ImageLib.dll": {},
+          "lib/uap10.0/ImageLib.Gif.dll": {}
+        }
+      },
       "Microsoft.ApplicationInsights/1.2.3": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
@@ -8589,9 +8713,37 @@
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "Win2D.uwp/1.7.0": {
+        "compile": {
+          "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {},
+          "lib/uap10.0/Workaround1200257.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {},
+          "lib/uap10.0/Workaround1200257.dll": {}
+        },
+        "native": {
+          "runtimes/win10-x64/native/Microsoft.Graphics.Canvas.dll": {}
+        }
       }
     },
     "UAP,Version=v10.0/win10-x86": {
+      "ImageLib.UWP/5.0.0": {
+        "dependencies": {
+          "Win2D.uwp": "[1.7.0, )"
+        },
+        "compile": {
+          "lib/uap10.0/ImageLib.Controls.dll": {},
+          "lib/uap10.0/ImageLib.dll": {},
+          "lib/uap10.0/ImageLib.Gif.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/ImageLib.Controls.dll": {},
+          "lib/uap10.0/ImageLib.dll": {},
+          "lib/uap10.0/ImageLib.Gif.dll": {}
+        }
+      },
       "Microsoft.ApplicationInsights/1.2.3": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
@@ -10340,9 +10492,37 @@
         "runtime": {
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "Win2D.uwp/1.7.0": {
+        "compile": {
+          "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {},
+          "lib/uap10.0/Workaround1200257.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {},
+          "lib/uap10.0/Workaround1200257.dll": {}
+        },
+        "native": {
+          "runtimes/win10-x86/native/Microsoft.Graphics.Canvas.dll": {}
+        }
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
+      "ImageLib.UWP/5.0.0": {
+        "dependencies": {
+          "Win2D.uwp": "[1.7.0, )"
+        },
+        "compile": {
+          "lib/uap10.0/ImageLib.Controls.dll": {},
+          "lib/uap10.0/ImageLib.dll": {},
+          "lib/uap10.0/ImageLib.Gif.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/ImageLib.Controls.dll": {},
+          "lib/uap10.0/ImageLib.dll": {},
+          "lib/uap10.0/ImageLib.Gif.dll": {}
+        }
+      },
       "Microsoft.ApplicationInsights/1.2.3": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
@@ -12058,10 +12238,47 @@
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "Win2D.uwp/1.7.0": {
+        "compile": {
+          "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {},
+          "lib/uap10.0/Workaround1200257.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {},
+          "lib/uap10.0/Workaround1200257.dll": {}
+        },
+        "native": {
+          "runtimes/win10-x86/native/Microsoft.Graphics.Canvas.dll": {}
+        }
       }
     }
   },
   "libraries": {
+    "ImageLib.UWP/5.0.0": {
+      "sha512": "mEaza6HGwVKOL8K4aDkrFEiSdcMc1efBH4ALdwJzUUblX9uZkvqUyaCzlM5K5+oamxmUUSRyY7X5UBE3BO6G1A==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "ImageLib.UWP.nuspec",
+        "lib/uap10.0/ImageLib.Controls.dll",
+        "lib/uap10.0/ImageLib.Controls.pdb",
+        "lib/uap10.0/ImageLib.Controls.pri",
+        "lib/uap10.0/ImageLib.Controls/ImageLib.Controls.xr.xml",
+        "lib/uap10.0/ImageLib.Controls/ImageView.xbf",
+        "lib/uap10.0/ImageLib.Controls/Properties/ImageLib.Controls.rd.xml",
+        "lib/uap10.0/ImageLib.dll",
+        "lib/uap10.0/ImageLib.Gif.dll",
+        "lib/uap10.0/ImageLib.Gif.pdb",
+        "lib/uap10.0/ImageLib.Gif.pri",
+        "lib/uap10.0/ImageLib.Gif/Properties/ImageLib.Gif.rd.xml",
+        "lib/uap10.0/ImageLib.pdb",
+        "lib/uap10.0/ImageLib.pri",
+        "lib/uap10.0/ImageLib/Properties/ImageLib.rd.xml",
+        "package/services/metadata/core-properties/edffd10e7fbe44618c2592940eb0cb45.psmdcp"
+      ]
+    },
     "Microsoft.ApplicationInsights/1.2.3": {
       "sha512": "a34atobxpucCTTX9VCD7aIu6Ydzry+Va7TxK2tTQcfaMvefGW4kUKtg9GHKIn19IaXe+A4oZt/GBqsOt5vQrBA==",
       "type": "Package",
@@ -15699,10 +15916,32 @@
         "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll",
         "System.Xml.XmlSerializer.nuspec"
       ]
+    },
+    "Win2D.uwp/1.7.0": {
+      "sha512": "q1/BSLPlwzAjh96AOLM0y+qELWn/+hHcUvELNqELf1fX6zFfSAp7eRFamOXuazTDvPKzr0YeQ8J5ErE8oYkRBA==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "build/native/Win2D.uwp.targets",
+        "include/Microsoft.Graphics.Canvas.h",
+        "include/Microsoft.Graphics.Canvas.native.h",
+        "lib/uap10.0/en/Microsoft.Graphics.Canvas.xml",
+        "lib/uap10.0/Microsoft.Graphics.Canvas.winmd",
+        "lib/uap10.0/Microsoft.Graphics.Canvas.xml",
+        "lib/uap10.0/Workaround1200257.dll",
+        "package/services/metadata/core-properties/804e31f876b743ed933710f3069c4090.psmdcp",
+        "runtimes/win10-arm/native/Microsoft.Graphics.Canvas.dll",
+        "runtimes/win10-x64/native/Microsoft.Graphics.Canvas.dll",
+        "runtimes/win10-x86/native/Microsoft.Graphics.Canvas.dll",
+        "Win2d.githash.txt",
+        "Win2D.uwp.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "": [
+      "ImageLib.UWP >= 5.0.0",
       "Microsoft.ApplicationInsights >= 1.2.3",
       "Microsoft.ApplicationInsights.PersistenceChannel >= 1.2.3",
       "Microsoft.ApplicationInsights.WindowsApps >= 1.1.1",

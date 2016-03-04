@@ -31,16 +31,26 @@ namespace TrafficRulesExam
         public MainPage()
         {
             this.InitializeComponent();
-
-            List<QuestionItem> questions = DatabaseHelper.GetLocalQuestions();
-            listView.ItemsSource = questions;
-            qcQuestion.UpdateUI(questions[0]);
         }
 
-        private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            QuestionItem question = listView.SelectedValue as QuestionItem;
-            qcQuestion.UpdateUI(question);
+            await HttpHelper.GetQuestionImage(34, async () =>
+            {
+                var decodeStream = await StorageHelper.GetImageFile("_34.gif");
+                SoftwareBitmapSource softBitmap = new SoftwareBitmapSource();
+                await softBitmap.SetBitmapAsync(decodeStream);
+                imageDecoder.Source = softBitmap;
+                imageDecoder.Width = decodeStream.PixelWidth;
+                imageDecoder.Height = decodeStream.PixelHeight;
+            });
+
+            var stream = await DatabaseHelper.GetQuestionImage(34);
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.SetSource(stream);
+            imageOrigin.Source = bitmap;
+            imageOrigin.Width = bitmap.PixelWidth;
+            imageOrigin.Height = bitmap.PixelHeight;
         }
     }
 }

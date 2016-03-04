@@ -101,6 +101,7 @@
     <Compile Include="Helper\DatabaseHelper.cs" />
     <Compile Include="Helper\HttpHelper.cs" />
     <Compile Include="Helper\StorageHelper.cs" />
+    <Compile Include="Helper\UserDataHelper.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
