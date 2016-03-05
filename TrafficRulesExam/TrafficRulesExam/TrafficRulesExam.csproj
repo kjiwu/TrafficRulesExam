@@ -112,6 +112,9 @@
     <Compile Include="Pages\ExercisePage.xaml.cs">
       <DependentUpon>ExercisePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ExercisePageViewModel.cs">
+      <DependentUpon>ExercisePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

@@ -9,7 +9,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+          DataContext="{x:Bind ViewModel}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
@@ -27,7 +28,8 @@
         </Grid>
 
         <uc:QuestionUserControl Grid.Row="1"
-                                Margin="12"/>
+                                Margin="12"
+                                x:Name="qc"/>
 
         <Grid Grid.Row="2"
               Background="DarkKhaki">
@@ -40,7 +42,8 @@
             <HyperlinkButton Content="上一题"
                              Foreground="White"
                              VerticalAlignment="Center"
-                             Margin="12"/>
+                             Margin="12"
+                             Command="{Binding GetPeriorCommand}"/>
             
             <TextBlock Text="1/1202" Grid.Column="1"
                        HorizontalAlignment="Center"
@@ -53,7 +56,9 @@
                              Foreground="White"
                              Grid.Column="2"
                              VerticalAlignment="Center" 
-                             Margin="12"/>
+                             Margin="12"
+                             Command="{Binding GetNextCommand}"
+                             />
 
 
         </Grid>

@@ -1,4 +1,5 @@
 ﻿using System;
+using TrafficRulesExam.Helper;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -23,6 +24,12 @@ namespace TrafficRulesExam
                 Microsoft.ApplicationInsights.WindowsCollectors.Session);
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            HttpHelper.GetExam(1, subject =>
+            {
+                HttpHelper.GetExam(4);
+            });
+
         }
 
         /// <summary>

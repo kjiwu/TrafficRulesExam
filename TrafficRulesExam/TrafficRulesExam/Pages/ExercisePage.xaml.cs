@@ -26,14 +26,30 @@ namespace TrafficRulesExam.Pages
         public ExercisePage()
         {
             this.InitializeComponent();
-        }        
+        }               
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
             this.SubjectId = Convert.ToInt32(e.Parameter);
+            _viewModel = new ExercisePageViewModel(this.SubjectId);
+            _viewModel.LoadQuestionCompleted += _viewModel_LoadQuestionCompleted;
+            _viewModel.QuestionChanged += _viewModel_QuestionChanged;
             UpdateTitle();
+        }
+
+        private void _viewModel_QuestionChanged(Models.QuestionItem obj)
+        {
+            qc.UpdateUI(SubjectId, obj);
+        }
+
+        private void _viewModel_LoadQuestionCompleted()
+        {
+            if (null != _viewModel.Questions)
+            {
+                qc.UpdateUI(SubjectId, _viewModel.Questions[0]);
+            }
         }
 
         private void UpdateTitle()
@@ -46,6 +62,19 @@ namespace TrafficRulesExam.Pages
                 case 4:
                     tbkTitle.Text = "科目四练习";
                     break;
+            }
+        }
+
+        private ExercisePageViewModel _viewModel;
+        public ExercisePageViewModel ViewModel
+        {
+            get
+            {
+                return _viewModel;
+            }
+            set
+            {
+                _viewModel = value;
             }
         }
     }
