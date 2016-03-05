@@ -46,11 +46,14 @@ namespace TrafficRulesExam
             });
 
             var stream = await DatabaseHelper.GetQuestionImage(34);
-            BitmapImage bitmap = new BitmapImage();
-            bitmap.SetSource(stream);
-            imageOrigin.Source = bitmap;
-            imageOrigin.Width = bitmap.PixelWidth;
-            imageOrigin.Height = bitmap.PixelHeight;
+            if (null != stream)
+            {
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.SetSource(stream);
+                imageOrigin.Source = bitmap;
+                imageOrigin.Width = bitmap.PixelWidth;
+                imageOrigin.Height = bitmap.PixelHeight;
+            }
         }
     }
 }

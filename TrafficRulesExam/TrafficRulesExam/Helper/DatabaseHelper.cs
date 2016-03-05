@@ -95,6 +95,8 @@ namespace TrafficRulesExam.Helper
                 return;
             }
 
+            CreateDatabase();
+
             using (SQLiteDatabaseConnection connection = SQLite3.Open(Database.DatabaseName))
             {
                 string sql = "update {0} set picture=? where id={1}";
@@ -112,7 +114,9 @@ namespace TrafficRulesExam.Helper
             if (questionId < 0)
             {
                 return randomAccessStream;
-            }            
+            }
+
+            CreateDatabase();
 
             using (SQLiteDatabaseConnection connection = SQLite3.Open(Database.DatabaseName))
             {
@@ -145,6 +149,7 @@ namespace TrafficRulesExam.Helper
         public static List<QuestionItem> GetLocalQuestions()
         {
             List<QuestionItem> questions = new List<QuestionItem>();
+            CreateDatabase();
 
             using (SQLiteDatabaseConnection connection = SQLite3.Open(Database.DatabaseName))
             {
