@@ -28,7 +28,23 @@ namespace TrafficRulesExam.Pages
             this.InitializeComponent();
         }
 
+        public SubjectStartPageViewModel ViewModel
+        {
+            get
+            {
+                return new SubjectStartPageViewModel();
+            }
+        }
+
         private int subjectId;
+
+        public int SubjectId
+        {
+            get
+            {
+                return subjectId;
+            }
+        }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {

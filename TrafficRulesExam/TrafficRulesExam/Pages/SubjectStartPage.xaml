@@ -8,7 +8,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+          DataContext="{x:Bind ViewModel}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="80" />
@@ -63,6 +64,8 @@
                     MinHeight="48"
                     MinWidth="240"
                     Style="{StaticResource ButtonStyle}"
+                    Command="{Binding GotoMockExamCommand}"
+                    CommandParameter="{x:Bind SubjectId}"
                     Tag="4">
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Center"
