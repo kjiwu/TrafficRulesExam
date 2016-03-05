@@ -34,7 +34,8 @@
                     MinHeight="48"
                     MinWidth="240"
                     Style="{StaticResource ButtonStyle}"
-                    Tag="1">
+                    Command="{Binding NavigateToCommand}"
+                    CommandParameter="1">
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center">
@@ -49,7 +50,8 @@
                     MinHeight="48"
                     MinWidth="240"
                     Style="{StaticResource ButtonStyle}"
-                    Tag="4">
+                    Command="{Binding NavigateToCommand}"
+                    CommandParameter="2">
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center">
@@ -64,9 +66,8 @@
                     MinHeight="48"
                     MinWidth="240"
                     Style="{StaticResource ButtonStyle}"
-                    Command="{Binding GotoMockExamCommand}"
-                    CommandParameter="{x:Bind SubjectId}"
-                    Tag="4">
+                    Command="{Binding NavigateToCommand}"
+                    CommandParameter="3">
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center">

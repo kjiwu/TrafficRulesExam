@@ -28,34 +28,26 @@ namespace TrafficRulesExam.Pages
             this.InitializeComponent();
         }
 
+        private SubjectStartPageViewModel viewModel;
         public SubjectStartPageViewModel ViewModel
         {
             get
             {
-                return new SubjectStartPageViewModel();
-            }
-        }
-
-        private int subjectId;
-
-        public int SubjectId
-        {
-            get
-            {
-                return subjectId;
+                return viewModel;
             }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            subjectId = Convert.ToInt32(e.Parameter);
+            SubjectId = Convert.ToInt32(e.Parameter);
+            viewModel = new SubjectStartPageViewModel(SubjectId);
             UpdateUI();
         }
 
         private void UpdateUI()
         {
-            switch (subjectId)
+            switch (SubjectId)
             {
                 case 1:
                     tbkTitle.Text = "科目一理论考试";

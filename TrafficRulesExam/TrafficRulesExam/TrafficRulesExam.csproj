@@ -103,8 +103,14 @@
     <Compile Include="Helper\HttpHelper.cs" />
     <Compile Include="Helper\StorageHelper.cs" />
     <Compile Include="Helper\UserDataHelper.cs" />
+    <Compile Include="Pages\ErrorExercisePage.xaml.cs">
+      <DependentUpon>ErrorExercisePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ExamStartPage.xaml.cs">
       <DependentUpon>ExamStartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ExercisePage.xaml.cs">
+      <DependentUpon>ExercisePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -115,6 +121,9 @@
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Pages\MainPageViewModel.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MockExamPage.xaml.cs">
+      <DependentUpon>MockExamPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\SubjectStartPage.xaml.cs">
       <DependentUpon>SubjectStartPage.xaml</DependentUpon>
@@ -150,13 +159,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Pages\ErrorExercisePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\ExamStartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ExercisePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\MockExamPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\SubjectStartPage.xaml">
       <SubType>Designer</SubType>

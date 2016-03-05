@@ -57,5 +57,15 @@ namespace TrafficRulesExam.CustomContols
 
             SystemNavigationManager.GetForCurrentView().BackRequested -= BasePage_BackRequested;
         }
+
+        protected int _subjectId = -1;
+        public int SubjectId
+        {
+            get { return _subjectId; }
+            set
+            {
+                _subjectId = value;
+            }
+        }
     }
 }

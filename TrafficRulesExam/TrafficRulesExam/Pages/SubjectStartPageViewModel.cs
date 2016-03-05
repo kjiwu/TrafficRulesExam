@@ -10,7 +10,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace TrafficRulesExam.Pages
 {
-    public class GotoMockExamCommand : ICommand
+    public class NavigateToCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
 
@@ -29,26 +29,45 @@ namespace TrafficRulesExam.Pages
             }
         }
 
-        public GotoMockExamCommand(Action<int> param)
+        public NavigateToCommand(Action<int> param)
         {
             _param = param;
         }
     }
 
-    public class SubjectStartPageViewModel : BaseViewModel
+    public class SubjectStartPageViewModel : BaseViewModel        
     {
-        public ICommand GotoMockExamCommand
+        public SubjectStartPageViewModel(int subjectId)
+        {
+            this.subjectId = subjectId;
+        }
+
+        private int subjectId;
+
+
+        public ICommand NavigateToCommand
         {
             get
             {
-                return new GotoMockExamCommand(GotoMockExam);
+                return new NavigateToCommand(NavigateToHandler);
             }
         }
 
-        private void GotoMockExam(int subjectId)
+        private void NavigateToHandler(int tag)
         {
             Frame root = Window.Current.Content as Frame;
-            root.Navigate(typeof(ExamStartPage), subjectId);
+            switch (tag)
+            {
+                case 1:
+                    root.Navigate(typeof(ExercisePage), subjectId);
+                    break;
+                case 2:
+                    root.Navigate(typeof(ErrorExercisePage), subjectId);
+                    break;
+                case 3:
+                    root.Navigate(typeof(ExamStartPage), subjectId);
+                    break;
+            }
         }
     }
 }

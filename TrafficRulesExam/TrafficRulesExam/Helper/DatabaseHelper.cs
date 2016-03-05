@@ -25,21 +25,39 @@ namespace TrafficRulesExam.Helper
                 }
             }
 
-            public static string TableName
+            public static string TableName1
             {
                 get
                 {
-                    return "questions";
+                    return "questions_1";
                 }
             }
 
-            public static string CreateTableStatement
+            public static string TableName4
+            {
+                get
+                {
+                    return "questions_4";
+                }
+            }
+
+            public static string CreateTable1Statement
             {
                 get
                 {
                     string sql = "create table if not exists {0}(sectionId integer, id integer primary key, question text, " + 
                                  "image integer, options text, answer text, explain text, picture blob)";
-                    return String.Format(sql, TableName);
+                    return String.Format(sql, TableName1);
+                }
+            }
+
+            public static string CreateTable4Statement
+            {
+                get
+                {
+                    string sql = "create table if not exists {0}(sectionId integer, id integer primary key, question text, " +
+                                 "image integer, options text, answer text, explain text, picture blob)";
+                    return String.Format(sql, TableName4);
                 }
             }
         }
@@ -49,11 +67,25 @@ namespace TrafficRulesExam.Helper
             Debug.WriteLine(Database.DatabaseName);
             using (SQLiteDatabaseConnection connection = SQLite3.Open(Database.DatabaseName))
             {
-                connection.Execute(Database.CreateTableStatement);
+                connection.Execute(Database.CreateTable1Statement);
+                connection.Execute(Database.CreateTable4Statement);
             }            
         }
 
-        public static void InsertQuestions(List<QuestionItem> questions)
+        private static string GetTableName(int subjectId)
+        {
+            string tableName = Database.TableName1;
+            switch (subjectId)
+            {
+                case 4:
+                    tableName = Database.TableName4;
+                    break;
+            }
+
+            return tableName;
+        }
+
+        public static void InsertQuestions(int subjectId, List<QuestionItem> questions)
         {
             if(null == questions)
             {
@@ -61,6 +93,8 @@ namespace TrafficRulesExam.Helper
             }
 
             CreateDatabase();
+
+
 
             using (SQLiteDatabaseConnection connection = SQLite3.Open(Database.DatabaseName))
             {
@@ -73,7 +107,7 @@ namespace TrafficRulesExam.Helper
 
                         string sql = "insert or replace into {0}(sectionId, id, question, image, options, answer, explain, picture)" +
                                      " values({1}, {2}, '{3}', {4}, '{5}', '{6}', '{7}', ?)";
-                        sql = String.Format(sql, Database.TableName,
+                        sql = String.Format(sql, GetTableName(subjectId),
                                                               question.SectionId,
                                                               question.Id,
                                                               FormatString(question.Question),
@@ -88,7 +122,7 @@ namespace TrafficRulesExam.Helper
             }
         }
 
-        public static void InsertQuestionPicture(int questionId, Stream stream)
+        public static void InsertQuestionPicture(int subjectId, int questionId, Stream stream)
         {
             if(questionId < 0 || null == stream)
             {
@@ -102,12 +136,12 @@ namespace TrafficRulesExam.Helper
                 string sql = "update {0} set picture=? where id={1}";
                 byte[] buffer = new byte[stream.Length];
                 stream.Read(buffer, 0, (int)stream.Length);
-                sql = String.Format(sql, Database.TableName, questionId);
+                sql = String.Format(sql, GetTableName(subjectId), questionId);
                 connection.Execute(sql, buffer);
             }
         }
 
-        public async static Task<IRandomAccessStream> GetQuestionImage(int questionId)
+        public async static Task<IRandomAccessStream> GetQuestionImage(int subjectId, int questionId)
         {
             IRandomAccessStream randomAccessStream = null;
 
@@ -121,7 +155,7 @@ namespace TrafficRulesExam.Helper
             using (SQLiteDatabaseConnection connection = SQLite3.Open(Database.DatabaseName))
             {
                 string sql = "select picture from {0} where id={1}";
-                sql = String.Format(sql, Database.TableName, questionId);
+                sql = String.Format(sql, GetTableName(subjectId), questionId);
                 var result = connection.Query(sql);
                 if (null != result)
                 {
@@ -146,14 +180,14 @@ namespace TrafficRulesExam.Helper
             return randomAccessStream;
         }
 
-        public static List<QuestionItem> GetLocalQuestions()
+        public static List<QuestionItem> GetLocalQuestions(int subjectId)
         {
             List<QuestionItem> questions = new List<QuestionItem>();
             CreateDatabase();
 
             using (SQLiteDatabaseConnection connection = SQLite3.Open(Database.DatabaseName))
             {
-                var items = connection.Query("select * from " + Database.TableName);
+                var items = connection.Query("select * from " + GetTableName(subjectId));
                 foreach(var item in items)
                 {
                     QuestionItem question = new QuestionItem();

@@ -28,7 +28,7 @@ namespace TrafficRulesExam.UserControls
             this.InitializeComponent();
         }
 
-        public async void UpdateUI(QuestionItem question)
+        public async void UpdateUI(int subjectId, QuestionItem question)
         {
             tbkTitle.Text = question.Id.ToString();
             tbkQuestion.Text = question.Question;
@@ -45,7 +45,7 @@ namespace TrafficRulesExam.UserControls
             if (question.Image == 1)
             {
                 imageControl.Visibility = Visibility.Visible;
-                IRandomAccessStream imageStream = await DatabaseHelper.GetQuestionImage(question.Id);
+                IRandomAccessStream imageStream = await DatabaseHelper.GetQuestionImage(subjectId, question.Id);
                 BitmapImage image = new BitmapImage();
                 image.SetSource(imageStream);
 
