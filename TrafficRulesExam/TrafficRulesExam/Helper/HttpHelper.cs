@@ -53,7 +53,7 @@ namespace TrafficRulesExam.Helper
                 if(null != subject)
                 {
                     await ThreadPool.RunAsync((workItem) => {
-                        DatabaseHelper.InsertQuestions(subject.Exam.Questions);
+                        DatabaseHelper.InsertQuestions(subjectId, subject.Exam.Questions);
                     });                    
 
                     if(null != handler)
@@ -64,14 +64,14 @@ namespace TrafficRulesExam.Helper
             }
         }
 
-        public static async Task GetQuestionImage(int questionId, Action completed)
+        public static async Task GetQuestionImage(int subjectId, int questionId, Action completed)
         {
             HttpClient client = new HttpClient();
             HttpResponseMessage response = await client.GetAsync(String.Format(URLFormatter.SubjectImageUrlFormatter, questionId));
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 Stream stream = await response.Content.ReadAsStreamAsync();
-                //DatabaseHelper.InsertQuestionPicture(questionId, stream);
+                DatabaseHelper.InsertQuestionPicture(subjectId, questionId, stream);
                 StorageHelper.SaveImageFile(String.Format(URLFormatter.ImageFileNameFormatter, questionId), stream, completed);
             }
         }

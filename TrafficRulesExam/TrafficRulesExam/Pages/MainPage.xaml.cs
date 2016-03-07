@@ -18,8 +18,7 @@ using Windows.UI.Xaml.Media.Imaging;
 using Windows.Storage.Streams;
 using System.Threading.Tasks;
 using TrafficRulesExam.Models;
-using System.Net;
-using Windows.Networking.Connectivity;
+using TrafficRulesExam.CustomContols;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -28,24 +27,19 @@ namespace TrafficRulesExam
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class MainPage : BasePage
     {
         public MainPage()
         {
             this.InitializeComponent();
         }
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        public MainPageViewModel ViewModel
         {
-            await HttpHelper.GetQuestionImage(2511, async () =>
+            get
             {
-                var decodeStream = await StorageHelper.GetImageFile("_2511.gif");
-                SoftwareBitmapSource softBitmap = new SoftwareBitmapSource();
-                await softBitmap.SetBitmapAsync(decodeStream);
-                imageDecoder.Source = softBitmap;
-                imageDecoder.Width = decodeStream.PixelWidth;
-                imageDecoder.Height = decodeStream.PixelHeight;
-            });
+                return new MainPageViewModel();
+            }
         }
     }
 }

@@ -54,15 +54,15 @@ namespace TrafficRulesExam.Helper
                         SoftwareBitmap softBmp = await decoder.GetSoftwareBitmapAsync(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Premultiplied);
                         encoder.SetSoftwareBitmap(softBmp);
                         await encoder.FlushAsync();
-                        await imageStream.FlushAsync();        
-                        
+                        await imageStream.FlushAsync();
+
                         if(null != completed)
                         {
                             completed();
-                        }             
+                        }
                     }
                 }
-            }            
+            }
         }
 
         public async static Task<SoftwareBitmap> GetImageFile(string fileName)

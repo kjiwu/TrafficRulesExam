@@ -16,7 +16,6 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal"
@@ -28,7 +27,7 @@
                        VerticalAlignment="Center" />
         </StackPanel>
 
-        <TextBlock Text="驾驶机动车在道路上违反道路交通安全法的行为，属于什么行为？"
+        <TextBlock Text="驾驶机动车在道路上违反道路交通安全法的行为，属于什么行为？"                   
                    Grid.Row="1"
                    x:Name="tbkQuestion"
                    TextWrapping="Wrap"
@@ -50,6 +49,16 @@
                        TextWrapping="Wrap" />
             <TextBlock Text="D、违规行为"
                        TextWrapping="Wrap" />
+        </StackPanel>
+        
+        <ToggleButton Content="A" Grid.Row="4"
+                      HorizontalAlignment="Right"
+                      Width="32"
+                      Height="32"/>
+
+        <StackPanel Grid.Row="5">
+            <TextBlock Text="解释" />
+            <TextBlock />
         </StackPanel>
     </Grid>
 </UserControl>
