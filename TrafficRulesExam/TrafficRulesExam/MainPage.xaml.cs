@@ -18,6 +18,8 @@ using Windows.UI.Xaml.Media.Imaging;
 using Windows.Storage.Streams;
 using System.Threading.Tasks;
 using TrafficRulesExam.Models;
+using System.Net;
+using Windows.Networking.Connectivity;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -35,22 +37,15 @@ namespace TrafficRulesExam
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            await HttpHelper.GetQuestionImage(34, async () =>
+            await HttpHelper.GetQuestionImage(2511, async () =>
             {
-                var decodeStream = await StorageHelper.GetImageFile("_34.gif");
+                var decodeStream = await StorageHelper.GetImageFile("_2511.gif");
                 SoftwareBitmapSource softBitmap = new SoftwareBitmapSource();
                 await softBitmap.SetBitmapAsync(decodeStream);
                 imageDecoder.Source = softBitmap;
                 imageDecoder.Width = decodeStream.PixelWidth;
                 imageDecoder.Height = decodeStream.PixelHeight;
             });
-
-            var stream = await DatabaseHelper.GetQuestionImage(34);
-            BitmapImage bitmap = new BitmapImage();
-            bitmap.SetSource(stream);
-            imageOrigin.Source = bitmap;
-            imageOrigin.Width = bitmap.PixelWidth;
-            imageOrigin.Height = bitmap.PixelHeight;
         }
     }
 }
