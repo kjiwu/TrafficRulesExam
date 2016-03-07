@@ -33,7 +33,33 @@ namespace TrafficRulesExam.Helper
             }
         }
 
-        public async static void SaveImageFile(string fileName, Stream stream, Action completed)
+        public async static Task<IRandomAccessStream> ConvertStreamToIRandomAccessStream(Stream stream)
+        {
+            if(null == stream)
+            {
+                return null;
+            }
+
+            byte[] buffer = new byte[stream.Length];
+            stream.Read(buffer, 0, buffer.Length);
+            MemoryStream ms = new MemoryStream(buffer);
+            var randomAccessStream = new InMemoryRandomAccessStream();
+            var outputStream = randomAccessStream.GetOutputStreamAt(0);
+            var dw = new DataWriter(outputStream);
+            dw.WriteBytes(ms.ToArray());
+            await dw.StoreAsync();
+            var success = await outputStream.FlushAsync();
+            if (success)
+            {
+                return randomAccessStream;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public async static Task<IRandomAccessStream> SaveImageFile(string fileName, Stream stream)
         {
             await CreateImageDir();
 
@@ -55,14 +81,12 @@ namespace TrafficRulesExam.Helper
                         encoder.SetSoftwareBitmap(softBmp);
                         await encoder.FlushAsync();
                         await imageStream.FlushAsync();
-
-                        if(null != completed)
-                        {
-                            completed();
-                        }
+                        return imageStream;
                     }
                 }
             }
+
+            return null;
         }
 
         public async static Task<SoftwareBitmap> GetImageFile(string fileName)

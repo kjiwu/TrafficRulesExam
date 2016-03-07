@@ -39,6 +39,7 @@ namespace TrafficRulesExam.CustomContols
         {
             if((false == e.Handled) && this.Frame.CanGoBack)
             {
+                e.Handled = true;
                 this.Frame.GoBack();
             }
         }

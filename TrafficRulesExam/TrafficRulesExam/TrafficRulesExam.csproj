@@ -101,6 +101,7 @@
     <Compile Include="CustomContols\BasePage.cs" />
     <Compile Include="Helper\DatabaseHelper.cs" />
     <Compile Include="Helper\HttpHelper.cs" />
+    <Compile Include="Helper\QuestionHelper.cs" />
     <Compile Include="Helper\StorageHelper.cs" />
     <Compile Include="Helper\UserDataHelper.cs" />
     <Compile Include="Pages\ErrorExercisePage.xaml.cs">

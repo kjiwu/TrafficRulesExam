@@ -64,7 +64,6 @@ namespace TrafficRulesExam.Helper
 
         public static void CreateDatabase()
         {
-            Debug.WriteLine(Database.DatabaseName);
             using (SQLiteDatabaseConnection connection = SQLite3.Open(Database.DatabaseName))
             {
                 connection.Execute(Database.CreateTable1Statement);
@@ -162,17 +161,20 @@ namespace TrafficRulesExam.Helper
                     foreach(var item in result)
                     {
                         IResultSetValue value = item[0];
-                        byte[] buffer = value.ToBlob();
-                        MemoryStream stream = new MemoryStream(buffer);
-                        randomAccessStream = new InMemoryRandomAccessStream();
-                        var outputStream = randomAccessStream.GetOutputStreamAt(0);
-                        var dw = new DataWriter(outputStream);
-                        var task = new Task(() => dw.WriteBytes(stream.ToArray()));
-                        task.Start();
-                        await task;
-                        await dw.StoreAsync();
-                        var success = await outputStream.FlushAsync();
-                        return randomAccessStream;
+                        if (value.SQLiteType == SQLiteType.Blob)
+                        {
+                            byte[] buffer = value.ToBlob();
+                            MemoryStream stream = new MemoryStream(buffer);
+                            randomAccessStream = new InMemoryRandomAccessStream();
+                            var outputStream = randomAccessStream.GetOutputStreamAt(0);
+                            var dw = new DataWriter(outputStream);
+                            var task = new Task(() => dw.WriteBytes(stream.ToArray()));
+                            task.Start();
+                            await task;
+                            await dw.StoreAsync();
+                            var success = await outputStream.FlushAsync();
+                            return randomAccessStream;
+                        }
                     }
                 }
             }

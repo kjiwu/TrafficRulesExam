@@ -9,6 +9,7 @@ using System.Threading;
 using Windows.System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Windows.Storage.Streams;
 
 namespace TrafficRulesExam.Helper
 {
@@ -64,7 +65,7 @@ namespace TrafficRulesExam.Helper
             }
         }
 
-        public static async Task GetQuestionImage(int subjectId, int questionId, Action completed)
+        public async static Task<byte[]> GetQuestionImage(int subjectId, int questionId)
         {
             HttpClient client = new HttpClient();
             HttpResponseMessage response = await client.GetAsync(String.Format(URLFormatter.SubjectImageUrlFormatter, questionId));
@@ -72,8 +73,12 @@ namespace TrafficRulesExam.Helper
             {
                 Stream stream = await response.Content.ReadAsStreamAsync();
                 DatabaseHelper.InsertQuestionPicture(subjectId, questionId, stream);
-                StorageHelper.SaveImageFile(String.Format(URLFormatter.ImageFileNameFormatter, questionId), stream, completed);
+                byte[] buffer = new byte[stream.Length];
+                stream.Read(buffer, 0, buffer.Length);
+                return buffer;
             }
+
+            return null;
         }
     }
 }

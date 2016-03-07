@@ -45,9 +45,9 @@ namespace TrafficRulesExam.UserControls
             if (question.Image == 1)
             {
                 imageControl.Visibility = Visibility.Visible;
-                IRandomAccessStream imageStream = await DatabaseHelper.GetQuestionImage(subjectId, question.Id);
+                IRandomAccessStream stream = await QuestionHelper.GetQuestionImage(subjectId, question.Id);
                 BitmapImage image = new BitmapImage();
-                image.SetSource(imageStream);
+                image.SetSource(stream);
 
                 imageControl.Source = image;
                 imageControl.Stretch = Stretch.UniformToFill;

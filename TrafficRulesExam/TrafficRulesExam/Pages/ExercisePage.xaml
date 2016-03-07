@@ -44,8 +44,8 @@
                              VerticalAlignment="Center"
                              Margin="12"
                              Command="{Binding GetPeriorCommand}"/>
-            
-            <TextBlock Text="1/1202" Grid.Column="1"
+
+            <TextBlock Text="{Binding Page}" Grid.Column="1"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        FontSize="24"

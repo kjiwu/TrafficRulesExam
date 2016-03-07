@@ -73,6 +73,20 @@ namespace TrafficRulesExam.Pages
             }
         }
 
+        private string _page = "";
+        public string Page
+        {
+            get
+            {
+                return _page;
+            }
+            set
+            {
+                _page = value;
+                RaisePropertyChanged("Page");          
+            }
+        }
+
         public event Action LoadQuestionCompleted;
         public event Action<QuestionItem> QuestionChanged;
 
@@ -81,8 +95,9 @@ namespace TrafficRulesExam.Pages
             HttpHelper.GetExam(_subjectId, subject =>
             {
                 Questions = subject.Exam.Questions;
+                this.Page = String.Format("{0}/{1}", _currentIndex + 1, Questions.Count);
 
-                if(null != LoadQuestionCompleted)
+                if (null != LoadQuestionCompleted)
                 {
                     LoadQuestionCompleted();
                 }
@@ -100,6 +115,12 @@ namespace TrafficRulesExam.Pages
                     QuestionChanged(_currentQuestion);
                 }
             }
+            else
+            {
+                _currentIndex = Questions.Count - 1;
+            }
+
+            this.Page = String.Format("{0}/{1}", _currentIndex + 1, Questions.Count);
         }
 
         public void Perior()
@@ -113,6 +134,11 @@ namespace TrafficRulesExam.Pages
                     QuestionChanged(_currentQuestion);
                 }
             }
+            else
+            {
+                _currentIndex = 0;
+            }
+            this.Page = String.Format("{0}/{1}", _currentIndex + 1, Questions.Count);
         }
 
         public ICommand GetNextCommand
