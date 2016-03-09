@@ -37,10 +37,10 @@ namespace TrafficRulesExam.Pages
 
     public class ExercisePageViewModel : BaseViewModel
     {
-        public ExercisePageViewModel(int subjectId)
+        public ExercisePageViewModel()
         {
-            _subjectId = subjectId;
-            LoadQuestion();
+            _subjectId = UserDataHelper.SubjectId;
+            CurrentIndex = UserDataHelper.GetSubjectExeOrder();
         }
 
         private int _subjectId;
@@ -90,18 +90,32 @@ namespace TrafficRulesExam.Pages
         public event Action LoadQuestionCompleted;
         public event Action<QuestionItem> QuestionChanged;
 
-        private void LoadQuestion()
+        public void LoadQuestion()
         {
-            HttpHelper.GetExam(_subjectId, subject =>
+            if (null == UserDataHelper.GetSubject())
             {
-                Questions = subject.Exam.Questions;
+                HttpHelper.GetExam(_subjectId, subject =>
+                {
+                    Questions = subject.Exam.Questions;
+                    this.Page = String.Format("{0}/{1}", _currentIndex + 1, Questions.Count);
+                    UserDataHelper.SetSubject(_subjectId, subject);
+
+                    if (null != LoadQuestionCompleted)
+                    {
+                        LoadQuestionCompleted();
+                    }
+                });
+            }
+            else
+            {
+                Questions = UserDataHelper.GetSubject().Exam.Questions;
                 this.Page = String.Format("{0}/{1}", _currentIndex + 1, Questions.Count);
 
                 if (null != LoadQuestionCompleted)
                 {
                     LoadQuestionCompleted();
                 }
-            });
+            }
         }
 
         public void Next()
@@ -121,6 +135,7 @@ namespace TrafficRulesExam.Pages
             }
 
             this.Page = String.Format("{0}/{1}", _currentIndex + 1, Questions.Count);
+            UserDataHelper.SaveSubjectExeOrder(_currentIndex);           
         }
 
         public void Perior()

@@ -57,19 +57,19 @@
 
             <TextBlock Grid.Column="2"
                        Foreground="Orange"
-                       Text="C1，C2，C3，C4"/>
-            <TextBlock Text="100题"
+                       x:Name="tbkCarType"/>
+            <TextBlock x:Name="tbkQuestionCount"
                        Grid.Row="1"
                        Foreground="Orange"
                        Grid.Column="2" />
-            <TextBlock Text="45分钟"
+            <TextBlock x:Name="tbkExamTime"
                        Foreground="Orange"
                        Grid.Row="2"
                        Grid.Column="2" />
-            <TextBlock Text="满分100，90分及格"
-                       Foreground="Orange"
+            <TextBlock Foreground="Orange"
                        Grid.Row="3"
-                       Grid.Column="2" />
+                       Grid.Column="2"
+                       x:Name="tbkPass"/>
         </Grid>
 
         <Grid Grid.Row="3">

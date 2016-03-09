@@ -45,23 +45,26 @@ namespace TrafficRulesExam.Helper
         public static async void GetExam(int subjectId = 1, Action<Subject> handler = null)
         {
             HttpClient client = new HttpClient();
-            HttpResponseMessage response = await client.GetAsync(String.Format(URLFormatter.SubjectUrlFormatter, subjectId));
-            if(response.StatusCode == HttpStatusCode.OK)
-            {                
-                Stream stream = await response.Content.ReadAsStreamAsync();
-                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Subject));
-                Subject subject = serializer.ReadObject(stream) as Subject;
-                if(null != subject)
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync(String.Format(URLFormatter.SubjectUrlFormatter, subjectId));
+                if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    await ThreadPool.RunAsync((workItem) => {
-                        DatabaseHelper.InsertQuestions(subjectId, subject.Exam.Questions);
-                    });                    
-
-                    if(null != handler)
+                    Stream stream = await response.Content.ReadAsStreamAsync();
+                    DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Subject));
+                    Subject subject = serializer.ReadObject(stream) as Subject;
+                    if (null != subject)
                     {
-                        handler(subject);
+                        if (null != handler)
+                        {
+                            handler(subject);
+                        }
                     }
                 }
+            }
+            catch
+            {
+
             }
         }
 
@@ -72,7 +75,6 @@ namespace TrafficRulesExam.Helper
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 Stream stream = await response.Content.ReadAsStreamAsync();
-                DatabaseHelper.InsertQuestionPicture(subjectId, questionId, stream);
                 byte[] buffer = new byte[stream.Length];
                 stream.Read(buffer, 0, buffer.Length);
                 return buffer;

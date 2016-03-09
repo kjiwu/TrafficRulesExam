@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Windows.Input;
+using TrafficRulesExam.Helper;
 using TrafficRulesExam.Pages;
 using TrafficRulesExam.ViewModels;
 using Windows.UI.Xaml;
@@ -46,9 +47,9 @@ namespace TrafficRulesExam
 
         private void GotoSubject(int subjectId)
         {
-            Debug.WriteLine(subjectId);
             Frame root = Window.Current.Content as Frame;
-            root.Navigate(typeof(SubjectStartPage), subjectId);
+            UserDataHelper.SubjectId = subjectId;
+            root.Navigate(typeof(SubjectStartPage), subjectId);            
         }
     }
 }

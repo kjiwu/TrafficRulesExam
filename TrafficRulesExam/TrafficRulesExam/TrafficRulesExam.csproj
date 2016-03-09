@@ -107,6 +107,9 @@
     <Compile Include="Pages\ErrorExercisePage.xaml.cs">
       <DependentUpon>ErrorExercisePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ErrorExercisePageViewModel.cs">
+      <DependentUpon>ErrorExercisePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ExamStartPage.xaml.cs">
       <DependentUpon>ExamStartPage.xaml</DependentUpon>
     </Compile>

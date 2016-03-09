@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrafficRulesExam.Helper;
 using Windows.System.Profile;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -59,13 +60,11 @@ namespace TrafficRulesExam.CustomContols
             SystemNavigationManager.GetForCurrentView().BackRequested -= BasePage_BackRequested;
         }
 
-        protected int _subjectId = -1;
         public int SubjectId
         {
-            get { return _subjectId; }
-            set
+            get
             {
-                _subjectId = value;
+                return UserDataHelper.SubjectId;
             }
         }
     }

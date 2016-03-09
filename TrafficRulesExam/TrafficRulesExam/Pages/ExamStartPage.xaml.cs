@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using TrafficRulesExam.CustomContols;
+using TrafficRulesExam.Helper;
+using TrafficRulesExam.Models;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -26,6 +29,20 @@ namespace TrafficRulesExam.Pages
         public ExamStartPage()
         {
             this.InitializeComponent();
+
+            UpdateUI();
+        }
+
+        private void UpdateUI()
+        {
+            ExamItem exam = UserDataHelper.GetSubject().Exam;
+            if(null != exam)
+            {
+                tbkCarType.Text = exam.Information[0].Description;
+                tbkQuestionCount.Text = exam.Information[1].Description;
+                tbkExamTime.Text = exam.Information[2].Description;
+                tbkPass.Text = exam.Information[3].Description;
+            }
         }
     }
 }

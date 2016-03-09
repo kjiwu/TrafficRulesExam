@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using TrafficRulesExam.CustomContols;
+using TrafficRulesExam.Helper;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -40,7 +41,6 @@ namespace TrafficRulesExam.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            SubjectId = Convert.ToInt32(e.Parameter);
             viewModel = new SubjectStartPageViewModel(SubjectId);
             UpdateUI();
         }
@@ -56,7 +56,9 @@ namespace TrafficRulesExam.Pages
                     tbkTitle.Text = "科目四理论考试";
                     break;
             }
-            
+
+            var errorQuestionIds = UserDataHelper.GetErrorQuestionIds();
+            btnErrorQuestions.IsEnabled = null == errorQuestionIds ? false : errorQuestionIds.Count > 0;
         }
     }
 }

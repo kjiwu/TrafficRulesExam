@@ -4,8 +4,12 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using TrafficRulesExam.CustomContols;
+using TrafficRulesExam.Helper;
+using TrafficRulesExam.Models;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -31,11 +35,11 @@ namespace TrafficRulesExam.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-
-            this.SubjectId = Convert.ToInt32(e.Parameter);
-            _viewModel = new ExercisePageViewModel(this.SubjectId);
+            
+            _viewModel = new ExercisePageViewModel();
             _viewModel.LoadQuestionCompleted += _viewModel_LoadQuestionCompleted;
             _viewModel.QuestionChanged += _viewModel_QuestionChanged;
+            _viewModel.LoadQuestion();
             UpdateTitle();
         }
 
@@ -48,7 +52,7 @@ namespace TrafficRulesExam.Pages
         {
             if (null != _viewModel.Questions)
             {
-                qc.UpdateUI(SubjectId, _viewModel.Questions[0]);
+                qc.UpdateUI(SubjectId, _viewModel.Questions[_viewModel.CurrentIndex]);
             }
         }
 
@@ -75,6 +79,29 @@ namespace TrafficRulesExam.Pages
             set
             {
                 _viewModel = value;
+            }
+        }
+
+        private async void qc_AnwserCompleted(bool obj)
+        {
+            if (obj)
+            {
+                _viewModel.Next();
+            }
+            else
+            {
+                QuestionItem question = _viewModel.Questions[_viewModel.CurrentIndex];
+                ContentDialog dialog = new ContentDialog()
+                {
+                    Content = question.Explain,
+                    Title = "解释",
+                    Background = new SolidColorBrush(Colors.Cornsilk),
+                    PrimaryButtonText = "确定",
+                    FullSizeDesired = false,
+                };
+                await dialog.ShowAsync();
+
+                UserDataHelper.AddErrorQuestionId(question.Id);
             }
         }
     }

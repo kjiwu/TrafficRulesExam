@@ -16,14 +16,15 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal"
                     Margin="8">
             <TextBlock Text="题目:"
                        VerticalAlignment="Center" />
-            <TextBlock Text="1"
-                       x:Name="tbkTitle"
+            <TextBlock x:Name="tbkTitle"
                        VerticalAlignment="Center" />
         </StackPanel>
 
@@ -41,5 +42,29 @@
                     Margin="8"
                     x:Name="spOptions">
         </StackPanel>
+
+        <Grid Grid.Row="4"
+              HorizontalAlignment="Right"
+              x:Name="answerContainer">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+        </Grid>
+
+        <Button Margin="0, 8"
+                Grid.Row="5"
+                MinHeight="32"
+                Width="120"
+                Content="提交"
+                Foreground="Azure"
+                HorizontalAlignment="Center"
+                Style="{StaticResource ButtonStyle}"
+                Click="btnMultiSelect_Click"
+                Visibility="Collapsed"
+                x:Name="btnMultiSelect">
+        </Button>
     </Grid>
 </UserControl>

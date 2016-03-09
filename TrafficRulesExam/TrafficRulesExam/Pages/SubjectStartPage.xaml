@@ -47,6 +47,7 @@
                 </StackPanel>
             </Button>
             <Button Margin="8, 12, 8, 8"
+                    x:Name="btnErrorQuestions"
                     MinHeight="48"
                     MinWidth="240"
                     Style="{StaticResource ButtonStyle}"

@@ -25,11 +25,8 @@ namespace TrafficRulesExam
             this.InitializeComponent();
             this.Suspending += OnSuspending;
 
-            HttpHelper.GetExam(1, subject =>
-            {
-                HttpHelper.GetExam(4);
-            });
-
+            HttpHelper.GetExam(1, subject1 => UserDataHelper.SetSubject(1, subject1));
+            HttpHelper.GetExam(4, subject4 => UserDataHelper.SetSubject(4, subject4));
         }
 
         /// <summary>
