@@ -39,6 +39,22 @@ namespace TrafficRulesExam.Helper
                     return "Subject1ErrorQuestionIds";
                 }
             }
+
+            public static string Subject1MockScoresKey
+            {
+                get
+                {
+                    return "Subject1MockScores";
+                }
+            }
+
+            public static string Subject4MockScoresKey
+            {
+                get
+                {
+                    return "Subject4MockScores";
+                }
+            }
         }
 
         public static void Save(string key, object value)
@@ -51,6 +67,15 @@ namespace TrafficRulesExam.Helper
         {
             ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
             return localSettings.Values[key];
+        }
+
+        public static void Remove(string key)
+        {
+            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            if (localSettings.Values.ContainsKey(key))
+            {
+                localSettings.Values.Remove(key);
+            }
         }
 
         public static int SubjectId { get; set; }
@@ -74,7 +99,7 @@ namespace TrafficRulesExam.Helper
 
         public static void SetSubject(int subjectId, Subject subject)
         {
-            switch(subjectId)
+            switch (subjectId)
             {
                 case 1:
                     Subject1 = subject;
@@ -133,13 +158,13 @@ namespace TrafficRulesExam.Helper
             {
                 case 1:
                     {
-                        if(null == Subject1ErrorQuestionIds)
+                        if (null == Subject1ErrorQuestionIds)
                         {
                             Subject1ErrorQuestionIds = new List<int>();
                         }
 
                         if (!Subject1ErrorQuestionIds.Contains(questionId))
-                        {                            
+                        {
                             Subject1ErrorQuestionIds.Add(questionId);
                         }
 
@@ -185,7 +210,7 @@ namespace TrafficRulesExam.Helper
 
         private static T GetJsonObject<T>(string value)
         {
-            if(String.IsNullOrEmpty(value))
+            if (String.IsNullOrEmpty(value))
             {
                 return default(T);
             }
@@ -216,6 +241,204 @@ namespace TrafficRulesExam.Helper
             }
 
             return null;
+        }
+
+        public static QuestionItem GetQuestion(int questionId)
+        {
+            Subject subject = GetSubject();
+            if(null == subject || 
+               null == subject.Exam || 
+               null == subject.Exam.Questions)
+            {
+                return null;
+            }
+
+            return subject.Exam.Questions.Where(x => x.Id == questionId).FirstOrDefault();
+        }
+
+        #region Get MockExam questions about functions
+
+        public static List<int> MockExamQuestionIds { get; set; }
+
+        public async static Task GetMockExamQuestionIds()
+        {
+            switch (SubjectId)
+            {
+                case 1:
+                    MockExamQuestionIds = await GetSubject1MockExamQuestionIds();
+                    break;
+                case 4:
+                    MockExamQuestionIds = await GetSubject4MockExamQuestionIds();
+                    break;
+            }
+        }
+
+        private const int Subject1TFQuestionCount = 40;
+        private const int Subject1SQuestionCount = 60;
+
+        private async static Task<List<int>> GetSubject1MockExamQuestionIds()
+        {
+            if (null == Subject1)
+            {
+                return null;
+            }
+            
+            return await Task.Run<List<int>>(() =>
+            {
+                List<int> result = new List<int>();
+                var TFQuestions = Subject1.Exam.Questions.Where(x => x.Options.Count == 2).ToList();
+                var SQuestions = Subject1.Exam.Questions.Where(x => x.Options.Count > 2).ToList();
+
+                for (int i = 0; i < Subject1TFQuestionCount; i++)
+                {
+                    Random rand = new Random(DateTime.Now.Millisecond);
+                    int index = rand.Next(0, TFQuestions.Count() - 1);
+                    QuestionItem question = TFQuestions.ElementAt(index);
+                    result.Add(question.Id);
+                    TFQuestions.Remove(question);
+                }
+
+                for (int i = 0; i < Subject1SQuestionCount; i++)
+                {
+                    Random rand = new Random(DateTime.Now.Millisecond);
+                    int index = rand.Next(0, SQuestions.Count() - 1);
+                    QuestionItem question = SQuestions.ElementAt(index);
+                    result.Add(question.Id);
+                    SQuestions.Remove(question);
+                }
+
+                return result;
+            });
+        }
+
+        private const int Subject4SQuestionCount = 45;
+        private const int Subject4MQuestionCount = 5;
+
+        private async static Task<List<int>> GetSubject4MockExamQuestionIds()
+        {
+            if (null == Subject4)
+            {
+                return null;
+            }
+
+            return await Task.Run<List<int>>(() =>
+            {
+                List<int> result = new List<int>();
+                var SQuestions = Subject4.Exam.Questions.Where(x => x.Answer.Count == 1).ToList();
+                var MQuestions = Subject4.Exam.Questions.Where(x => x.Answer.Count > 1).ToList();
+
+                for (int i = 0; i < Subject4SQuestionCount; i++)
+                {
+                    Random rand = new Random(DateTime.Now.Millisecond);
+                    int index = rand.Next(0, SQuestions.Count() - 1);
+                    QuestionItem question = SQuestions.ElementAt(index);
+                    result.Add(question.Id);
+                    SQuestions.Remove(question);
+                }
+
+                for (int i = 0; i < Subject4MQuestionCount; i++)
+                {
+                    Random rand = new Random(DateTime.Now.Millisecond);
+                    int index = rand.Next(0, MQuestions.Count() - 1);
+                    QuestionItem question = MQuestions.ElementAt(index);
+                    result.Add(question.Id);
+                    MQuestions.Remove(question);
+                }
+
+                return result;
+            });
+        }
+
+        #endregion
+
+        #region Get MockExam score about functions
+
+        public static List<int> Scores
+        {
+            get; protected set;
+        }
+
+        public static void SaveScore(int score)
+        {
+            if (null == Scores)
+            {
+                Scores = new List<int>();
+            }
+
+            Scores.Add(score);
+
+            if (Scores.Count > 0)
+            {
+                string dataString = GetJsonString(Scores);
+                switch (SubjectId)
+                {
+                    case 1:
+                        Save(UserDataKey.Subject1MockScoresKey, dataString);
+                        break;
+                    case 4:
+                        Save(UserDataKey.Subject4MockScoresKey, dataString);
+                        break;
+                }
+                
+            }
+            
+        }
+
+        public static void GetScores()
+        {
+            string key = UserDataKey.Subject1MockScoresKey;
+            switch (SubjectId)
+            {
+                case 4:
+                    key = UserDataKey.Subject4MockScoresKey;
+                    break;
+            }
+            var json = (string)GetValue(key);
+            List<int> scores = GetJsonObject<List<int>>(json);
+            Scores = scores;
+        }
+
+        #endregion
+
+        public static void ClearScores()
+        {
+            string key = UserDataKey.Subject1MockScoresKey;
+            switch (SubjectId)
+            {
+                case 4:
+                    key = UserDataKey.Subject4MockScoresKey;
+                    break;
+            }
+            Remove(key);
+            Scores = null;
+        }
+
+        public static void ClearExeOrder()
+        {
+            string key = UserDataKey.Subject1ExeOrderKey;
+            switch (SubjectId)
+            {
+                case 4:
+                    key = UserDataKey.Subject4ExeOrderKey;
+                    break;
+            }
+            Remove(key);
+        }
+
+        public static void ClearErrorQuestionIds()
+        {
+            string key = UserDataKey.Subject1ErrorQuestionIdsKey;
+            switch (SubjectId)
+            {
+                case 1:
+                    Subject1ErrorQuestionIds = null;
+                    break;
+                case 4:
+                    Subject4ErrorQuestionIds = null;
+                    key = UserDataKey.Subject4ErrorQuestionIdsKey;
+                    break;
+            }
+            Remove(key);
         }
     }
 }

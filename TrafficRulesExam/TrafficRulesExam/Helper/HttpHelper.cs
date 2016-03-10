@@ -42,30 +42,33 @@ namespace TrafficRulesExam.Helper
             }
         }
 
-        public static async void GetExam(int subjectId = 1, Action<Subject> handler = null)
+        public static async Task GetExam(int subjectId = 1, Action<Subject> handler = null)
         {
             HttpClient client = new HttpClient();
-            try
+            await Task.Run(async () =>
             {
-                HttpResponseMessage response = await client.GetAsync(String.Format(URLFormatter.SubjectUrlFormatter, subjectId));
-                if (response.StatusCode == HttpStatusCode.OK)
+                try
                 {
-                    Stream stream = await response.Content.ReadAsStreamAsync();
-                    DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Subject));
-                    Subject subject = serializer.ReadObject(stream) as Subject;
-                    if (null != subject)
+                    HttpResponseMessage response = await client.GetAsync(String.Format(URLFormatter.SubjectUrlFormatter, subjectId));
+                    if (response.StatusCode == HttpStatusCode.OK)
                     {
-                        if (null != handler)
+                        Stream stream = await response.Content.ReadAsStreamAsync();
+                        DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Subject));
+                        Subject subject = serializer.ReadObject(stream) as Subject;
+                        if (null != subject)
                         {
-                            handler(subject);
+                            if (null != handler)
+                            {
+                                handler(subject);
+                            }
                         }
                     }
                 }
-            }
-            catch
-            {
+                catch
+                {
 
-            }
+                }
+            });
         }
 
         public async static Task<byte[]> GetQuestionImage(int subjectId, int questionId)

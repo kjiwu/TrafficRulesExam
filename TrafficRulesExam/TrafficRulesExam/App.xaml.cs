@@ -24,9 +24,6 @@ namespace TrafficRulesExam
                 Microsoft.ApplicationInsights.WindowsCollectors.Session);
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-
-            HttpHelper.GetExam(1, subject1 => UserDataHelper.SetSubject(1, subject1));
-            HttpHelper.GetExam(4, subject4 => UserDataHelper.SetSubject(4, subject4));
         }
 
         /// <summary>
@@ -34,7 +31,7 @@ namespace TrafficRulesExam
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected async override void OnLaunched(LaunchActivatedEventArgs e)
         {
 
 #if DEBUG
@@ -69,6 +66,8 @@ namespace TrafficRulesExam
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
+                await HttpHelper.GetExam(1, subject1 => UserDataHelper.SetSubject(1, subject1));
+                await HttpHelper.GetExam(4, subject4 => UserDataHelper.SetSubject(4, subject4));
                 rootFrame.Navigate(typeof(MainPage), e.Arguments);
             }
             // Ensure the current window is active

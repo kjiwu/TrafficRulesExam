@@ -45,14 +45,15 @@ namespace TrafficRulesExam.Pages
 
         private void _viewModel_QuestionChanged(Models.QuestionItem obj)
         {
-            qc.UpdateUI(SubjectId, obj);
+            qc.UpdateUI(SubjectId, obj.Id, obj);
         }
 
         private void _viewModel_LoadQuestionCompleted()
         {
             if (null != _viewModel.Questions)
             {
-                qc.UpdateUI(SubjectId, _viewModel.Questions[_viewModel.CurrentIndex]);
+                var question = _viewModel.Questions[_viewModel.CurrentIndex];
+                qc.UpdateUI(SubjectId, question.Id, question);
             }
         }
 

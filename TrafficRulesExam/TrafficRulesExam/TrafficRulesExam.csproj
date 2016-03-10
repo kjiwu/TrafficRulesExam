@@ -113,6 +113,9 @@
     <Compile Include="Pages\ExamStartPage.xaml.cs">
       <DependentUpon>ExamStartPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ExamStartPageViewModel.cs">
+      <DependentUpon>ExamStartPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ExercisePage.xaml.cs">
       <DependentUpon>ExercisePage.xaml</DependentUpon>
     </Compile>
@@ -130,6 +133,9 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MockExamPage.xaml.cs">
+      <DependentUpon>MockExamPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MockExamPageViewModel.cs">
       <DependentUpon>MockExamPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\SubjectStartPage.xaml.cs">

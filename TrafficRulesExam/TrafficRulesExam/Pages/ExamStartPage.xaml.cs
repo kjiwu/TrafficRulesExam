@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Windows.Input;
 using TrafficRulesExam.CustomContols;
 using TrafficRulesExam.Helper;
 using TrafficRulesExam.Models;
@@ -35,14 +36,39 @@ namespace TrafficRulesExam.Pages
 
         private void UpdateUI()
         {
-            ExamItem exam = UserDataHelper.GetSubject().Exam;
-            if(null != exam)
+            Subject subject = UserDataHelper.GetSubject();
+            if(null != subject)
             {
-                tbkCarType.Text = exam.Information[0].Description;
-                tbkQuestionCount.Text = exam.Information[1].Description;
-                tbkExamTime.Text = exam.Information[2].Description;
-                tbkPass.Text = exam.Information[3].Description;
+                ExamItem exam = subject.Exam;
+                if (null != exam)
+                {
+                    tbkCarType.Text = exam.Information[0].Description;
+                    tbkQuestionCount.Text = exam.Information[1].Description;
+                    tbkExamTime.Text = exam.Information[2].Description;
+                    tbkPass.Text = exam.Information[3].Description;
+                }
             }
+        }
+
+        ExamStartPageViewModel _viewModel = new ExamStartPageViewModel();
+        public ExamStartPageViewModel ViewModel { get { return _viewModel; } }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            var scores = _viewModel.GetScores();
+            if(null != scores)
+            {
+                scores.Reverse();
+            }
+            listScores.ItemsSource = scores;
+        }
+
+        private void SymbolIcon_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            UserDataHelper.ClearScores();
+            listScores.ItemsSource = null;
         }
     }
 }

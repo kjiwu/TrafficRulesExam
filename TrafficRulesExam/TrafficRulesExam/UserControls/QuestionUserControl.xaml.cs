@@ -38,12 +38,13 @@ namespace TrafficRulesExam.UserControls
 
         QuestionItem _question;
 
-        public async void UpdateUI(int subjectId, QuestionItem question)
+        public async void UpdateUI(int subjectId, int titleId, QuestionItem question)
         {
             _question = question;
             answers = new List<int>();
+            imageControl.Source = null;
 
-            tbkTitle.Text = question.Id.ToString();
+            tbkTitle.Text = titleId.ToString();
             tbkQuestion.Text = question.Question;
 
             spOptions.Children.Clear();

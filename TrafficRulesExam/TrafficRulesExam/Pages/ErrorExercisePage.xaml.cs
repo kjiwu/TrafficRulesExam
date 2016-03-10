@@ -37,12 +37,12 @@ namespace TrafficRulesExam.Pages
             _viewModel = new ErrorExercisePageViewModel();
             _viewModel.QuestionChanged += _viewModel_QuestionChanged;
             _viewModel.LoadQuestion();
-            qc.UpdateUI(SubjectId, _viewModel.CurrentQuestion);
+            qc.UpdateUI(SubjectId, _viewModel.CurrentQuestion.Id, _viewModel.CurrentQuestion);
         }
 
         private void _viewModel_QuestionChanged(Models.QuestionItem obj)
         {
-            qc.UpdateUI(SubjectId, obj);
+            qc.UpdateUI(SubjectId, obj.Id, obj);
         }
 
         private async void qc_AnwserCompleted(bool obj)
