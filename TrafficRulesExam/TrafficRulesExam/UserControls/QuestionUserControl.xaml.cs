@@ -93,6 +93,7 @@ namespace TrafficRulesExam.UserControls
                         rightButton.Margin = new Thickness(4, 0, 4, 0);
                         rightButton.Tag = 1;
                         rightButton.Tapped += ToggleButton_Tapped;
+                        rightButton.Style = this.Resources["ToggleButtonStyle"] as Style;
 
                         ToggleButton wrongButton = new ToggleButton();
                         wrongButton.Content = _question.Options[1];
@@ -100,6 +101,7 @@ namespace TrafficRulesExam.UserControls
                         wrongButton.Margin = new Thickness(4, 0, 4, 0);
                         wrongButton.Tag = 2;
                         wrongButton.Tapped += ToggleButton_Tapped;
+                        wrongButton.Style = this.Resources["ToggleButtonStyle"] as Style;
 
                         answerContainer.Children.Add(rightButton);
                         answerContainer.Children.Add(wrongButton);
@@ -113,6 +115,7 @@ namespace TrafficRulesExam.UserControls
                         AButton.Margin = new Thickness(4, 0, 4, 0);
                         AButton.Tag = 1;
                         AButton.Tapped += ToggleButton_Tapped;
+                        AButton.Style = this.Resources["ToggleButtonStyle"] as Style;
 
                         ToggleButton BButton = new ToggleButton();
                         BButton.Content = "B";
@@ -120,6 +123,7 @@ namespace TrafficRulesExam.UserControls
                         BButton.Margin = new Thickness(4, 0, 4, 0);
                         BButton.Tag = 2;
                         BButton.Tapped += ToggleButton_Tapped;
+                        BButton.Style = this.Resources["ToggleButtonStyle"] as Style;
 
                         ToggleButton CButton = new ToggleButton();
                         CButton.Content = "C";
@@ -127,6 +131,7 @@ namespace TrafficRulesExam.UserControls
                         CButton.Margin = new Thickness(4, 0, 4, 0);
                         CButton.Tag = 3;
                         CButton.Tapped += ToggleButton_Tapped;
+                        CButton.Style = this.Resources["ToggleButtonStyle"] as Style;
 
                         ToggleButton DButton = new ToggleButton();
                         DButton.Content = "D";
@@ -134,6 +139,7 @@ namespace TrafficRulesExam.UserControls
                         DButton.Margin = new Thickness(4, 0, 4, 0);
                         DButton.Tag = 4;
                         DButton.Tapped += ToggleButton_Tapped;
+                        DButton.Style = this.Resources["ToggleButtonStyle"] as Style;
 
                         answerContainer.Children.Add(AButton);
                         answerContainer.Children.Add(BButton);

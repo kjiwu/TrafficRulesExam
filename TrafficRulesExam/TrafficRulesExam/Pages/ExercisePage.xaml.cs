@@ -104,6 +104,8 @@ namespace TrafficRulesExam.Pages
 
                 UserDataHelper.AddErrorQuestionId(question.Id);
             }
+
+            UserDataHelper.SaveSubjectExeOrder(ViewModel.CurrentIndex);
         }
     }
 }

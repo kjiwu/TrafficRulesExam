@@ -10,6 +10,7 @@ using Windows.System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Windows.Storage.Streams;
+using Windows.Storage;
 
 namespace TrafficRulesExam.Helper
 {
@@ -44,17 +45,59 @@ namespace TrafficRulesExam.Helper
 
         public static async Task GetExam(int subjectId = 1, Action<Subject> handler = null)
         {
-            HttpClient client = new HttpClient();
-            await Task.Run(async () =>
+            var subject = await StorageHelper.GetSubjectFromJson(subjectId);
+
+            if (null == subject)
             {
-                try
+                await Task.Run(async () =>
                 {
-                    HttpResponseMessage response = await client.GetAsync(String.Format(URLFormatter.SubjectUrlFormatter, subjectId));
-                    if (response.StatusCode == HttpStatusCode.OK)
+                    try
                     {
-                        Stream stream = await response.Content.ReadAsStreamAsync();
+                        HttpClient client = new HttpClient();
+                        HttpResponseMessage response = await client.GetAsync(String.Format(URLFormatter.SubjectUrlFormatter, subjectId));
+                        if (response.StatusCode == HttpStatusCode.OK)
+                        {
+                            Stream stream = await response.Content.ReadAsStreamAsync();
+                            byte[] buffer = new byte[stream.Length];
+                            stream.Read(buffer, 0, buffer.Length);
+
+                            stream.Seek(0, 0);
+                            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Subject));
+                            subject = serializer.ReadObject(stream) as Subject;
+
+                            StorageHelper.SaveSubjectJsonFile(subjectId, buffer);
+
+                            if (null != subject)
+                            {
+                                if (null != handler)
+                                {
+                                    handler(subject);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(String.Format("ms-appx:///Assets/subject{0}.json", subjectId)));
+                            var stream = await file.OpenReadAsync();
+                            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Subject));
+                            subject = serializer.ReadObject(stream.AsStream()) as Subject;
+                            if (null != subject)
+                            {
+                                if (null != handler)
+                                {
+                                    handler(subject);
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.WriteLine(e.Message);
+
+                        StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(String.Format("ms-appx:///Assets/subject{0}.json", subjectId)));
+                        var stream = await file.OpenReadAsync();
                         DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Subject));
-                        Subject subject = serializer.ReadObject(stream) as Subject;
+                        subject = serializer.ReadObject(stream.AsStream()) as Subject;
                         if (null != subject)
                         {
                             if (null != handler)
@@ -63,12 +106,15 @@ namespace TrafficRulesExam.Helper
                             }
                         }
                     }
-                }
-                catch
+                });
+            }
+            else
+            {
+                if (null != handler)
                 {
-
+                    handler(subject);
                 }
-            });
+            }           
         }
 
         public async static Task<byte[]> GetQuestionImage(int subjectId, int questionId)
@@ -80,6 +126,9 @@ namespace TrafficRulesExam.Helper
                 Stream stream = await response.Content.ReadAsStreamAsync();
                 byte[] buffer = new byte[stream.Length];
                 stream.Read(buffer, 0, buffer.Length);
+
+                await StorageHelper.SaveImageFile(String.Format("_{0}.gif", questionId), buffer);
+
                 return buffer;
             }
 

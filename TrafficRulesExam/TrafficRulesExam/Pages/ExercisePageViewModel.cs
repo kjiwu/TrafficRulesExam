@@ -90,11 +90,11 @@ namespace TrafficRulesExam.Pages
         public event Action LoadQuestionCompleted;
         public event Action<QuestionItem> QuestionChanged;
 
-        public void LoadQuestion()
+        public async void LoadQuestion()
         {
             if (null == UserDataHelper.GetSubject())
             {
-                HttpHelper.GetExam(_subjectId, subject =>
+                await HttpHelper.GetExam(_subjectId, subject =>
                 {
                     Questions = subject.Exam.Questions;
                     this.Page = String.Format("{0}/{1}", _currentIndex + 1, Questions.Count);
@@ -134,8 +134,7 @@ namespace TrafficRulesExam.Pages
                 _currentIndex = Questions.Count - 1;
             }
 
-            this.Page = String.Format("{0}/{1}", _currentIndex + 1, Questions.Count);
-            UserDataHelper.SaveSubjectExeOrder(_currentIndex);           
+            this.Page = String.Format("{0}/{1}", _currentIndex + 1, Questions.Count);                       
         }
 
         public void Perior()

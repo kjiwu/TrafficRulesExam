@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Windows;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.Graphics.Imaging;
-using Windows.UI.Xaml.Media.Imaging;
+using System.Runtime.Serialization.Json;
+using TrafficRulesExam.Models;
 
 namespace TrafficRulesExam.Helper
 {
@@ -17,25 +15,37 @@ namespace TrafficRulesExam.Helper
     {
         private static string ImageDirName = "Images";
 
-        private async static Task CreateImageDir()
+        private async static Task CreateDir(string folderName)
         {
             StorageFolder folder = ApplicationData.Current.LocalFolder;
             Debug.WriteLine(folder.Path);
 
             var result = await folder.GetFoldersAsync();
-            if(null != result)
+            if (null != result)
             {
-                var sf = result.Where(f => f.Name.ToLower().Equals(ImageDirName.ToLower()));
+                var sf = result.Where(f => f.Name.ToLower().Equals(folderName.ToLower()));
                 if (!sf.Any())
                 {
-                    await folder.CreateFolderAsync(ImageDirName);
+                    await folder.CreateFolderAsync(folderName);
                 }
             }
         }
 
+        private async static Task<bool> IsFileExist(StorageFolder folder, string fileName)
+        {
+            if(null == folder || String.IsNullOrEmpty(fileName))
+            {
+                return false;
+            }
+
+            var files = await folder.GetFilesAsync(Windows.Storage.Search.CommonFileQuery.DefaultQuery);
+            var file = files.Where(x => x.Name.ToLower().Equals(fileName.ToLower())).FirstOrDefault();
+            return null != file;
+        }
+
         public async static Task<IRandomAccessStream> ConvertStreamToIRandomAccessStream(Stream stream)
         {
-            if(null == stream)
+            if (null == stream)
             {
                 return null;
             }
@@ -59,29 +69,36 @@ namespace TrafficRulesExam.Helper
             }
         }
 
-        public async static Task<IRandomAccessStream> SaveImageFile(string fileName, Stream stream)
+        public async static Task<IRandomAccessStream> SaveImageFile(string fileName, byte[] buffer)
         {
-            await CreateImageDir();
+            await CreateDir(ImageDirName);
 
             StorageFolder folder = ApplicationData.Current.LocalFolder;
             StorageFolder imageFolder = await folder.GetFolderAsync(ImageDirName);
-            if(null != imageFolder)
+            if (null != imageFolder)
             {
                 StorageFile image = await imageFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
-                if(null != image)
+                if (null != image)
                 {
-                    using (var imageStream = await image.OpenAsync(FileAccessMode.ReadWrite))
+                    using (var imageStream = await image.OpenStreamForWriteAsync())
                     {
-                        BitmapEncoder encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.GifEncoderId, imageStream);
-                        IInputStream inputStream = stream.AsInputStream();
-                        IRandomAccessStream memStream = new InMemoryRandomAccessStream();
-                        await RandomAccessStream.CopyAsync(inputStream, memStream);
-                        BitmapDecoder decoder = await BitmapDecoder.CreateAsync(memStream);
-                        SoftwareBitmap softBmp = await decoder.GetSoftwareBitmapAsync(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Premultiplied);
-                        encoder.SetSoftwareBitmap(softBmp);
-                        await encoder.FlushAsync();
-                        await imageStream.FlushAsync();
-                        return imageStream;
+                        var outputStream = imageStream.AsRandomAccessStream();
+                        BitmapEncoder encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.GifEncoderId, outputStream);
+                        using (MemoryStream stream = new MemoryStream(buffer))
+                        {
+                            IInputStream inputStream = stream.AsInputStream();
+                            IRandomAccessStream memStream = new InMemoryRandomAccessStream();
+                            var result = await RandomAccessStream.CopyAsync(inputStream, memStream);
+                            if (result != 0)
+                            {
+                                BitmapDecoder decoder = await BitmapDecoder.CreateAsync(memStream);
+                                SoftwareBitmap softBmp = await decoder.GetSoftwareBitmapAsync(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Premultiplied);
+                                encoder.SetSoftwareBitmap(softBmp);
+                                await encoder.FlushAsync();
+                                await imageStream.FlushAsync();
+                                return outputStream;
+                            }
+                        }
                     }
                 }
             }
@@ -91,22 +108,88 @@ namespace TrafficRulesExam.Helper
 
         public async static Task<SoftwareBitmap> GetImageFile(string fileName)
         {
-            await CreateImageDir();
+            await CreateDir(ImageDirName);
 
             StorageFolder folder = ApplicationData.Current.LocalFolder;
             StorageFolder imageFolder = await folder.GetFolderAsync(ImageDirName);
             if (null != imageFolder)
             {
-                StorageFile image = await imageFolder.GetFileAsync(fileName);
-                using (IRandomAccessStream stream = await image.OpenAsync(FileAccessMode.Read))
+                bool result = await IsFileExist(imageFolder, fileName);
+                if (result)
                 {
-                    BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream);
-                    SoftwareBitmap softBmp = await decoder.GetSoftwareBitmapAsync(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Premultiplied);
-                    return softBmp;
+                    StorageFile image = await imageFolder.GetFileAsync(fileName);
+                    using (IRandomAccessStream stream = await image.OpenAsync(FileAccessMode.Read))
+                    {
+                        BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream);
+                        SoftwareBitmap softBmp = await decoder.GetSoftwareBitmapAsync(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Premultiplied);
+                        return softBmp;
+                    }
                 }
             }
 
             return null;
         }
+
+
+        public async static Task<IRandomAccessStream> GetImageFileStream(string fileName)
+        {
+            await CreateDir(ImageDirName);
+
+            StorageFolder folder = ApplicationData.Current.LocalFolder;
+            StorageFolder imageFolder = await folder.GetFolderAsync(ImageDirName);
+            if (imageFolder != null)
+            {
+                bool result = await IsFileExist(imageFolder, fileName);
+                if (result)
+                {
+                    StorageFile image = await imageFolder.GetFileAsync(fileName);
+                    if (null != image)
+                    {
+                        return await image.OpenAsync(FileAccessMode.Read);
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        #region 保存下载的考试信息
+
+        private static string FilesDirName = "Files";
+
+        public async static void SaveSubjectJsonFile(int subjectId, byte[] buffer)
+        {
+            await CreateDir(FilesDirName);
+
+            string fileName = subjectId == 1 ? "subject1.json" : "subject4.json";
+            var localFolder = ApplicationData.Current.LocalFolder;
+            var fileFolder = await localFolder.GetFolderAsync(FilesDirName);
+            Stream writeStream = await fileFolder.OpenStreamForWriteAsync(fileName, CreationCollisionOption.ReplaceExisting);
+            writeStream.Write(buffer, 0, buffer.Length);
+            await writeStream.FlushAsync();
+        }
+
+        public async static Task<Subject> GetSubjectFromJson(int subjectId)
+        {
+            var localFolder = ApplicationData.Current.LocalFolder;
+            string path = Path.Combine(localFolder.Path, FilesDirName);
+            var fileFolder = StorageFolder.GetFolderFromPathAsync(path);
+            if (fileFolder.Status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                string fileName = subjectId == 1 ? "subject1.json" : "subject4.json";
+                bool result = await IsFileExist(fileFolder.GetResults(), fileName);
+                if (result)
+                {
+                    var file = await fileFolder.GetResults().GetFileAsync(fileName);
+                    var stream = await file.OpenStreamForWriteAsync();
+                    DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Subject));
+                    return serializer.ReadObject(stream) as Subject;
+                }
+            }
+
+            return null;
+        }
+
+        #endregion
     }
 }

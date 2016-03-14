@@ -10,7 +10,7 @@ namespace TrafficRulesExam.Helper
     {
         public async static Task<IRandomAccessStream> GetQuestionImage(int subjectId, int questionId)
         {
-            IRandomAccessStream imageStream = await DatabaseHelper.GetQuestionImage(subjectId, questionId);
+            IRandomAccessStream imageStream = await StorageHelper.GetImageFileStream(String.Format("_{0}.gif", questionId));
             if(null == imageStream)
             {
                 var buffer = await HttpHelper.GetQuestionImage(subjectId, questionId);

@@ -228,14 +228,20 @@ namespace TrafficRulesExam.Helper
                     if (null == Subject1ErrorQuestionIds)
                     {
                         var json = (string)GetValue(UserDataKey.Subject1ErrorQuestionIdsKey);
-                        Subject1ErrorQuestionIds = GetJsonObject<List<int>>(json).OrderBy(x => x).ToList();
+                        if (null != json)
+                        {
+                            Subject1ErrorQuestionIds = GetJsonObject<List<int>>(json).OrderBy(x => x).ToList();
+                        }
                     }
                     return Subject1ErrorQuestionIds;
                 case 4:
                     if (null == Subject4ErrorQuestionIds)
                     {
                         var json = (string)GetValue(UserDataKey.Subject4ErrorQuestionIdsKey);
-                        Subject4ErrorQuestionIds = GetJsonObject<List<int>>(json).OrderBy(x => x).ToList();
+                        if (null != json)
+                        {
+                            Subject4ErrorQuestionIds = GetJsonObject<List<int>>(json).OrderBy(x => x).ToList();
+                        }
                     }
                     return Subject4ErrorQuestionIds;
             }
@@ -246,8 +252,8 @@ namespace TrafficRulesExam.Helper
         public static QuestionItem GetQuestion(int questionId)
         {
             Subject subject = GetSubject();
-            if(null == subject || 
-               null == subject.Exam || 
+            if (null == subject ||
+               null == subject.Exam ||
                null == subject.Exam.Questions)
             {
                 return null;
@@ -282,7 +288,7 @@ namespace TrafficRulesExam.Helper
             {
                 return null;
             }
-            
+
             return await Task.Run<List<int>>(() =>
             {
                 List<int> result = new List<int>();
@@ -379,9 +385,9 @@ namespace TrafficRulesExam.Helper
                         Save(UserDataKey.Subject4MockScoresKey, dataString);
                         break;
                 }
-                
+
             }
-            
+
         }
 
         public static void GetScores()
