@@ -314,7 +314,7 @@
                 MinHeight="32"
                 Width="120"
                 Content="提交"
-                Foreground="Azure"
+                Foreground="CadetBlue"
                 HorizontalAlignment="Center"
                 Style="{StaticResource ButtonStyle}"
                 Click="btnMultiSelect_Click"

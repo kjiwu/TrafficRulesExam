@@ -16,6 +16,7 @@ namespace TrafficRulesExam.Pages
         {
             _questionIds = UserDataHelper.MockExamQuestionIds;
             this.Page = String.Format("{0}/{1}", _currentIndex + 1, _questionIds.Count);
+            CurrentQuestion = UserDataHelper.GetQuestion(_questionIds[0]);
         }
 
         private int _currentIndex = 0;
@@ -63,9 +64,9 @@ namespace TrafficRulesExam.Pages
             switch (UserDataHelper.SubjectId)
             {
                 case 1:
-                    return 100 - errorCount;
+                    return _questionIds.Count - errorCount;
                 case 4:
-                    return 100 - errorCount * 2;
+                    return _questionIds.Count * 2 - errorCount * 2;
             }
 
             return 0;

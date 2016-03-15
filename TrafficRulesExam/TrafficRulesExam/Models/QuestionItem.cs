@@ -45,5 +45,28 @@ namespace TrafficRulesExam.Models
 
         [DataMember(Name = "explain")]
         public string Explain { get; set; }
+
+
+        public static string GetExplain(QuestionItem question)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (int index in question.Answer)
+            {
+                sb.Append(question.Options[index - 1] + "\r\n");
+            }
+
+            sb.Append("\r\n解释：");
+
+            if (String.IsNullOrEmpty(question.Explain))
+            {
+                sb.Append("没有解释，记住！");
+            }
+            else
+            {
+                sb.Append(question.Explain);
+            }
+
+            return sb.ToString();
+        }
     }
 }

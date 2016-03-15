@@ -94,8 +94,8 @@ namespace TrafficRulesExam.Pages
                 QuestionItem question = _viewModel.Questions[_viewModel.CurrentIndex];
                 ContentDialog dialog = new ContentDialog()
                 {
-                    Content = question.Explain,
-                    Title = "解释",
+                    Content = QuestionItem.GetExplain(question),
+                    Title = "正确答案：",
                     Background = new SolidColorBrush(Colors.Cornsilk),
                     PrimaryButtonText = "确定",
                     FullSizeDesired = false,

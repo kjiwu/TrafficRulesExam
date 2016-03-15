@@ -7,6 +7,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI;
 using System;
+using System.Text;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -73,6 +74,11 @@ namespace TrafficRulesExam.Pages
                 await dialog.ShowAsync();
 
                 UserDataHelper.SaveScore(score);
+
+                if (Frame.CanGoBack)
+                {
+                    Frame.GoBack();
+                }
             }
         }
 
@@ -93,8 +99,8 @@ namespace TrafficRulesExam.Pages
                 QuestionItem question = _viewModel.CurrentQuestion;
                 ContentDialog dialog = new ContentDialog()
                 {
-                    Content = question.Explain,
-                    Title = "解释",
+                    Content = QuestionItem.GetExplain(question),
+                    Title = "正确答案：",
                     Background = new SolidColorBrush(Colors.Cornsilk),
                     PrimaryButtonText = "确定",
                     FullSizeDesired = false,

@@ -26,13 +26,18 @@ namespace TrafficRulesExam.UserControls
         public QuestionUserControl()
         {
             this.InitializeComponent();
-            IsMultiSelect = false;
         }
 
+        bool _isMultiSelect = false;
         public bool IsMultiSelect {
+            get
+            {
+                return _isMultiSelect;
+            }
             set
             {
-                btnMultiSelect.Visibility = value ? Visibility.Visible : Visibility.Collapsed;
+                _isMultiSelect = value;
+                btnMultiSelect.Visibility = _isMultiSelect ? Visibility.Visible : Visibility.Collapsed;
             }
         }
 
@@ -73,6 +78,8 @@ namespace TrafficRulesExam.UserControls
             {
                 imageControl.Visibility = Visibility.Collapsed;
             }
+
+            IsMultiSelect = question.Answer.Count > 1;
 
             GenerateButtons();
         }
@@ -161,10 +168,14 @@ namespace TrafficRulesExam.UserControls
             if((bool)button.IsChecked)
             {
                 answers.Add(answer);
-                bool result = GetAnwserResult();
-                if (null != AnwserCompleted)
+                if (!IsMultiSelect)
                 {
-                    AnwserCompleted(result);
+                    bool result = GetAnwserResult();
+                    button.IsChecked = false;
+                    if (null != AnwserCompleted)
+                    {
+                        AnwserCompleted(result);
+                    }
                 }
             }
             else

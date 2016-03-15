@@ -201,7 +201,7 @@ namespace TrafficRulesExam.Helper
         {
             DataContractJsonSerializer serializer = new DataContractJsonSerializer(value.GetType());
             var stream = new MemoryStream();
-            serializer.WriteObject(stream, Subject1ErrorQuestionIds);
+            serializer.WriteObject(stream, value);
             byte[] dataBytes = new byte[stream.Length];
             stream.Position = 0;
             stream.Read(dataBytes, 0, (int)stream.Length);
@@ -317,7 +317,7 @@ namespace TrafficRulesExam.Helper
             });
         }
 
-        private const int Subject4SQuestionCount = 45;
+        private const int Subject4SQuestionCount = 0;
         private const int Subject4MQuestionCount = 5;
 
         private async static Task<List<int>> GetSubject4MockExamQuestionIds()

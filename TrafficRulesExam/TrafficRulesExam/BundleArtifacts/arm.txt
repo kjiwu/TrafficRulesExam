@@ -1,0 +1,3 @@
+MainPackage=C:\Users\wulei\Desktop\TrafficRulesExam\TrafficRulesExam\TrafficRulesExam\bin\ARM\Release\TrafficRulesExam_1.1.0.0_ARM.appx
+SymbolPackage=C:\Users\wulei\Desktop\TrafficRulesExam\TrafficRulesExam\TrafficRulesExam\AppPackages\TrafficRulesExam_1.1.0.0_Test\TrafficRulesExam_1.1.0.0_ARM.appxsym
+ResourcePack=C:\Users\wulei\Desktop\TrafficRulesExam\TrafficRulesExam\TrafficRulesExam\bin\ARM\Release\TrafficRulesExam_1.1.0.0_language-en.appx
