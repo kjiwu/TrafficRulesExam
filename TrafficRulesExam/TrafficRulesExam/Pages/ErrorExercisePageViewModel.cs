@@ -12,8 +12,6 @@ namespace TrafficRulesExam.Pages
 {
     public class ErrorExercisePageViewModel : BaseViewModel
     {
-        private int _subjectId;
-
         private int _currentIndex = 0;
         public int CurrentIndex
         {

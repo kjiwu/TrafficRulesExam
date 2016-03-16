@@ -1,2 +1,0 @@
-MainPackage=C:\Users\wulei\Desktop\TrafficRulesExam\TrafficRulesExam\TrafficRulesExam\bin\x64\Release\TrafficRulesExam_1.1.0.0_x64.appx
-SymbolPackage=C:\Users\wulei\Desktop\TrafficRulesExam\TrafficRulesExam\TrafficRulesExam\AppPackages\TrafficRulesExam_1.1.0.0_Test\TrafficRulesExam_1.1.0.0_x64.appxsym

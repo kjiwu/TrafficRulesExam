@@ -81,4 +81,14 @@
             </Button>
         </StackPanel>
     </Grid>
+
+    <page:BasePage.BottomAppBar>
+        <CommandBar Background="DarkKhaki">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Label="清除缓存"
+                              Icon="Delete"
+                              Click="AppBarButton_Click"/>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </page:BasePage.BottomAppBar>
 </page:BasePage>

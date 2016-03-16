@@ -60,5 +60,12 @@ namespace TrafficRulesExam.Pages
             var errorQuestionIds = UserDataHelper.GetErrorQuestionIds();
             btnErrorQuestions.IsEnabled = null == errorQuestionIds ? false : errorQuestionIds.Count > 0;
         }
+
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            btnErrorQuestions.IsEnabled = false;
+            UserDataHelper.ClearErrorQuestionIds();
+            UserDataHelper.ClearExeOrder();
+        }
     }
 }
