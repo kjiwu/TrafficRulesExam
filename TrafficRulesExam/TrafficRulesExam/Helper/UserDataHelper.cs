@@ -317,7 +317,7 @@ namespace TrafficRulesExam.Helper
             });
         }
 
-        private const int Subject4SQuestionCount = 0;
+        private const int Subject4SQuestionCount = 45;
         private const int Subject4MQuestionCount = 5;
 
         private async static Task<List<int>> GetSubject4MockExamQuestionIds()

@@ -115,7 +115,7 @@
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
                                                                            Storyboard.TargetName="ContentPresenter">
                                                 <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="{ThemeResource SystemControlHighlightAltChromeWhiteBrush}" />
+                                                                        Value="SteelBlue" />
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush"
                                                                            Storyboard.TargetName="ContentPresenter">
@@ -278,7 +278,7 @@
         <StackPanel Orientation="Horizontal"
                     Margin="8">
             <TextBlock Text="题目:"
-                       VerticalAlignment="Center" />
+                       VerticalAlignment="Center"/>
             <TextBlock x:Name="tbkTitle"
                        VerticalAlignment="Center" />
         </StackPanel>
